@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,6 +15,7 @@
       align-items: center;
       height: 100vh;
     }
+
     .modal {
       background: #fff;
       border-radius: 12px;
@@ -22,23 +24,27 @@
       width: 360px;
       border: 2px solid pink;
     }
+
     .header {
       display: flex;
       justify-content: space-between;
       align-items: start;
     }
+
     .avatar {
       width: 64px;
       height: 64px;
       background: url('https://via.placeholder.com/64') center/cover;
       clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
     }
+
     .close {
       font-size: 1.2em;
       cursor: pointer;
       border: none;
       background: none;
     }
+
     .profile-info {
       text-align: center;
       display: flex;
@@ -47,35 +53,42 @@
       align-items: center;
       margin-bottom: 16px;
     }
+
     .profile-image {
       width: 72px;
       height: 72px;
-      background: rgb(215, 52, 79);
+      background: rgb(231, 99, 121);
       background-image: url('https://via.placeholder.com/72');
       background-size: cover;
       background-position: center;
-      clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+      clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%); 
       margin-bottom: 8px;
+      box-shadow: 0 5px 10px rgba(230, 95, 136, 0.4);
     }
+
     .username {
       font-weight: bold;
       font-size: 1.05em;
       color: #2c3e50;
     }
+
     .joined {
       font-size: 0.85em;
       color: #6c7a89;
     }
+
     .pill {
       display: inline-block;
       display: flex;
-      background: rgb(215, 52, 79);
+      background:  rgb(231, 99, 121);
       color: #000;
       border-radius: 900px;
       padding: 8px 8px;
       font-size: 0.8em;
       margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(230, 95, 136, 0.4);
     }
+
     .pill .caca {
       background: none;
       border: none;
@@ -84,23 +97,28 @@
       cursor: pointer;
       margin-left: auto;
       margin-right: auto;
-      padding: 0 8px; 
-    } 
+      padding: 0 8px;
+    }
+
     .pill .caca:hover {
       color: pink;
     }
+
     .pill .caca:focus {
       outline: none;
     }
+
     .stats {
       display: flex;
       justify-content: space-between;
       font-size: 0.9em;
       margin-bottom: 16px;
     }
+
     .stats div {
       text-align: center;
     }
+
     .stats .value {
       font-size: 1.0em;
       font-weight: bold;
@@ -108,17 +126,33 @@
       margin-block: 4px;
       color: #34495e;
     }
+
     .favorites .no-fav-title {
       font-size: 0.95em;
       text-align: center;
     }
-    .no-fav {
-      color: #aaa;
-      text-align: center;
-      font-size: 0.9em;
+
+    .game-placeholder {
+      width: 64px;
+      height: 64px;
+      background-color: rgb(231, 99, 121);
+      border: 1px dashed pink;
+      border-radius: 8px;
+      background-image: url('https://via.placeholder.com/64');
+      /* Dummy image URL */
+      background-size: cover;
+      background-position: center;
+    }
+
+    .fav-games {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
     }
   </style>
 </head>
+
 <body>
   <div class="modal">
     <div class="profile-info">
@@ -144,8 +178,13 @@
     </div>
     <div class="favorites">
       <h4 class="no-fav-title">Favourite Games</h4>
-      <div class="no-fav">No games favourited</div>
+      <div class="fav-games">
+        <div class="game-placeholder"></div>
+        <div class="game-placeholder"></div>
+        <div class="game-placeholder"></div>
+      </div>
     </div>
   </div>
 </body>
+
 </html>

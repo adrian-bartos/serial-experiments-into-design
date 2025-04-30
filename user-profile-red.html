@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player Profile Modal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e3f3f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      padding: 24px;
+      width: 360px;
+      border: 2px solid pink;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .avatar {
+      width: 64px;
+      height: 64px;
+      background: url('https://via.placeholder.com/64') center/cover;
+      clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+    }
+    .close {
+      font-size: 1.2em;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+    .profile-info {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .profile-image {
+      width: 72px;
+      height: 72px;
+      background: rgb(215, 52, 79);
+      background-image: url('https://via.placeholder.com/72');
+      background-size: cover;
+      background-position: center;
+      clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+      margin-bottom: 8px;
+      box-shadow: 0 5px 10px rgba(230, 95, 136, 0.4);
+    }
+    .username {
+      font-weight: bold;
+      font-size: 1.05em;
+      color: #2c3e50;
+    }
+    .joined {
+      font-size: 0.85em;
+      color: #6c7a89;
+    }
+    .pill {
+      display: inline-block;
+      display: flex;
+      background: rgb(215, 52, 79);
+      color: #000;
+      border-radius: 900px;
+      padding: 8px 8px;
+      font-size: 0.8em;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(230, 95, 136, 0.4);
+    }
+    .pill .caca {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.2em;
+      cursor: pointer;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 8px; 
+    } 
+    .pill .caca:hover {
+      color: pink;
+    }
+    .pill .caca:focus {
+      outline: none;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9em;
+      margin-bottom: 16px;
+    }
+    .stats div {
+      text-align: center;
+    }
+    .stats .value {
+      font-size: 1.0em;
+      font-weight: bold;
+      box-shadow: #6c7a89;
+      margin-block: 4px;
+      color: #34495e;
+    }
+    .favorites .no-fav-title {
+      font-size: 0.95em;
+      text-align: center;
+    }
+    .no-fav {
+      color: #aaa;
+      text-align: center;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="modal">
+    <div class="profile-info">
+      <div class="profile-image"></div>
+      <div class="username">Twitch@Fubar</div>
+      <div class="joined">Joined on: 12/3/2024</div>
+    </div>
+    <div class="header">
+      <div class="avatar"></div>
+    </div>
+    <div class="pill">
+      <button class="caca" aria-label="Close modal">Level 93</button>
+    </div>
+    <div class="stats">
+      <div>
+        <div class="value">$860.61</div>
+        <div class="value">Total Wagered</div>
+      </div>
+      <div>
+        <div class="value">$833.33</div>
+        <div class="value">Wagered Today</div>
+      </div>
+    </div>
+    <div class="favorites">
+      <h4 class="no-fav-title">Favourite Games</h4>
+      <div class="no-fav">No games favourited</div>
+    </div>
+  </div>
+</body>
+</html>
