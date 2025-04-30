@@ -1,11 +1,7 @@
 # serial-experiments-into-design
 
 A series of short design experiments exploring UI elements, concepts, and interactions.  
-Each experiment is represented by a unique HTML file that redirects to a specific design.
-
-## 🔗 First Experiment
-
-[User Profile Redirect](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile.html)
+Each experiment is represented by a HTML file that redirects to a specific design.
 
 ## 📁 Structure
 
@@ -20,16 +16,8 @@ This project is a creative sandbox to:
 - Prototype interface components
 - Share micro-experiments in a browsable way
 
-## 🛠️ Usage
+## 🔗 Experiments
 
-1. Clone or download the repo.
-2. Browse the HTML files in `/` to see different redirect entries.
-3. Each file takes you to a unique design hosted on GitHub Pages or another linked location.
+[Minimal User Profile Design](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile.html)
 
-## 🌐 Live Site
 
-View the collection here: [serial-experiments-into-design on GitHub Pages](https://adrian-bartos.github.io/serial-experiments-into-design/)
-
----
-
-Feel free to explore, fork, or contribute ideas!
