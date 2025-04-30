@@ -3,9 +3,6 @@
 A series of short design experiments exploring UI elements, concepts, and interactions.  
 Each experiment is represented by a HTML file that redirects to a specific design.
 
-## 📁 Structure
-
-Each entry in this project includes:
 - A minimal HTML file used for redirecting to a specific design experiment
 - A corresponding hosted design or interaction demo
 
@@ -18,6 +15,7 @@ This project is a creative sandbox to:
 
 ## 🔗 Experiments
 
+### User profile
 🟦 [Minimal User Profile Blue](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html) 🟥 [Minimal User Profile Red](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red.html) 🟥
 [Minimal User Profile Red Alternative](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red-games.html)
 
