@@ -18,6 +18,7 @@ This project is a creative sandbox to:
 
 ## 🔗 Experiments
 
-[Minimal User Profile Design](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile.html)
+🟦 [Minimal User Profile Blue](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html) 🟥 [Minimal User Profile Red](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html) 🟥
+[Minimal User Profile Red Alternative](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html)
 
 
