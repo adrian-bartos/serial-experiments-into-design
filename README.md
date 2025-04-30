@@ -21,4 +21,9 @@ This project is a creative sandbox to:
 🟦 [Minimal User Profile Blue](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html) 🟥 [Minimal User Profile Red](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html) 🟥
 [Minimal User Profile Red Alternative](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html)
 
-
+<style>
+  body {
+    background-color: #121212; /* Dark background */
+    color: white; /* Light text color for contrast */
+  }
+</style>
