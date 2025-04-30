@@ -22,3 +22,10 @@ This project is a creative sandbox to:
 [Minimal User Profile Red Alternative](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red-games.html)
 
 
+
+<style>
+  body {
+    background-color: #121212; /* Dark background */
+    color: white; /* Light text color for contrast */
+  }
+</style>
