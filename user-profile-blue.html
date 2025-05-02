@@ -9,13 +9,13 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #121212
-        /* Light background color for the modal */
-      ;
+      background: #121212;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      padding: 16px;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
 
     .modal {
@@ -23,7 +23,8 @@
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       padding: 24px;
-      width: 360px;
+      width: 100%;
+      max-width: 400px;
       border: 2px solid pink;
     }
 
@@ -51,7 +52,6 @@
       text-align: center;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       margin-bottom: 16px;
     }
@@ -59,33 +59,33 @@
     .profile-image {
       width: 72px;
       height: 72px;
-      background: #d4af37;
-      background-image: url('https://via.placeholder.com/72');
-      background-size: cover;
-      background-position: center;
+      background: #d4af37 url('https://via.placeholder.com/72') center/cover;
       clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
       margin-bottom: 8px;
       box-shadow: 0 2px 5px rgba(230, 95, 136, 0.4);
     }
 
+    .username,
+    .joined {
+      color: #e5e5e5;
+    }
+
     .username {
       font-weight: bold;
       font-size: 1.05em;
-      color: #e5e5e5;
     }
 
     .joined {
       font-size: 0.85em;
-      color: #e5e5e5;
     }
 
     .pill {
-      display: inline-block;
       display: flex;
+      justify-content: center;
       background: #d4af37;
       color: #000;
       border-radius: 900px;
-      padding: 8px 8px;
+      padding: 8px;
       font-size: 0.8em;
       margin-bottom: 10px;
       box-shadow: 0 2px 5px #c29e2e;
@@ -97,8 +97,6 @@
       color: #e5e5e5;
       font-size: 1.2em;
       cursor: pointer;
-      margin-left: auto;
-      margin-right: auto;
       padding: 0 8px;
     }
 
@@ -106,27 +104,24 @@
       color: #65540a;
     }
 
-    .pill .caca:focus {
-      outline: none;
-    }
-
     .stats {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       font-size: 0.9em;
       margin-bottom: 16px;
+      gap: 12px;
     }
 
     .stats div {
+      flex: 1 1 45%;
       text-align: center;
     }
 
     .stats .value {
-      font-size: 1.0em;
-      font-weight: bold;
-      box-shadow: #6c7a89;
-      margin-block: 4px;
       color: #e5e5e5;
+      font-weight: bold;
+      margin-block: 4px;
     }
 
     .favorites .no-fav-title {
@@ -139,6 +134,7 @@
       display: flex;
       gap: 8px;
       justify-content: center;
+      flex-wrap: wrap;
       margin-top: 8px;
     }
 
@@ -149,9 +145,18 @@
       border: 1px dashed #555;
       border-radius: 8px;
       background-image: url('https://via.placeholder.com/64');
-      /* Dummy image URL */
       background-size: cover;
       background-position: center;
+    }
+
+    @media (max-width: 360px) {
+      .modal {
+        padding: 16px;
+      }
+
+      .stats div {
+        flex: 1 1 100%;
+      }
     }
   </style>
 </head>
