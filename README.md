@@ -12,9 +12,5 @@ Each experiment is represented by a HTML file that redirects to a specific desig
 ### Login screen
 🟦 [Minimal login screen Grey](https://adrian-bartos.github.io/serial-experiments-into-design/login-modal.html) 
 
-<style>
-  body {
-    background-color: #121212; /* Dark background */
-    color: white; /* Light text color for contrast */
-  }
-</style>
+<style> body { background-color: #121212;
+    color: white;}</style>
