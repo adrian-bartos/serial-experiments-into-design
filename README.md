@@ -10,7 +10,7 @@ Each experiment is represented by a HTML file that redirects to a specific desig
 [Minimal User Profile Red Alternative](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red-games.html)
 
 ### Login screen
-🟦 [Minimal login screen Grey](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html) 
+🟦 [Minimal login screen Grey](https://adrian-bartos.github.io/serial-experiments-into-design/login-modal.html) 
 
 <style>
   body {
