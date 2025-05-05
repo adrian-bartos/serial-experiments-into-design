@@ -1,168 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #000;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background: #222;
-            border-radius: 12px;
-            padding: 2rem;
-            width: 320px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .login-container h2 {
-            color: #fff;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-            width: 100%;
-            position: relative;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 6px;
-            background: #333;
-            color: #fff;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        .form-group input::placeholder {
-            color: #aaa;
-        }
-
-        .form-group input.invalid {
-            border: 1px solid #f4a6b4;
-        }
-
-        .password-toggle-icon {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #ccc;
-        }
-
-        .login-button {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #444;
-            color: #fff;
-            font-size: 1rem;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 0 transparent;
-        }
-
-        .login-button:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 10px #fff;
-        }
-
-        .login-button:active {
-            transform: scale(0.97);
-        }
-
-        .login-button:disabled {
-            background-color: #555;
-            cursor: not-allowed;
-        }
-
-        .reset-link {
-            margin-top: 1rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-
-        .reset-link a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .reset-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login | Serial Experiments</title>
+  <meta name="color-scheme" content="dark light">
+  <style>
+    :root{
+      --bg:#0d0d0d;
+      --surface:#1e1e1e;
+      --surface-hover:#2a2a2a;
+      --accent:#3b82f6;
+      --text:#f5f5f5;
+      --text-muted:#9ca3af;
+      --error:#f43f5e;
+      --radius:0.75rem;
+      --transition:0.2s ease;
+    }
+    @media (prefers-color-scheme:light){
+      :root{
+        --bg:#f5f5f5;
+        --surface:#ffffff;
+        --surface-hover:#f0f0f0;
+        --text:#111827;
+        --text-muted:#6b7280;
+      }
+    }
+    *,*:before,*:after{box-sizing:border-box}
+    body{
+      margin:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      background:var(--bg);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.5;
+      color:var(--text);
+    }
+    main{
+      background:var(--surface);
+      border-radius:var(--radius);
+      padding:2rem clamp(1rem,4vw,2.5rem);
+      width:clamp(18rem,90vw,24rem);
+      box-shadow:0 8px 24px rgba(0,0,0,0.2);
+    }
+    h1{
+      font-size:1.5rem;
+      margin-block:0 1.5rem;
+      text-align:center;
+    }
+    fieldset{
+      border:0;
+      margin:0 0 1rem 0;
+      padding:0;
+    }
+    label{
+      display:block;
+      font-size:0.875rem;
+      margin-bottom:0.25rem;
+    }
+    input{
+      width:100%;
+      padding:0.75rem;
+      border-radius:0.5rem;
+      border:1px solid var(--surface-hover);
+      background:var(--surface-hover);
+      color:var(--text);
+      font-size:1rem;
+      transition:border-color var(--transition),background var(--transition);
+    }
+    input::placeholder{color:var(--text-muted)}
+    input:focus{
+      outline:none;
+      border-color:var(--accent);
+      background:var(--surface);
+    }
+    input[aria-invalid="true"]{
+      border-color:var(--error);
+    }
+    .password-wrapper{
+      position:relative;
+    }
+    .password-toggle{
+      position:absolute;
+      inset-inline-end:0.75rem;
+      top:50%;
+      transform:translateY(-50%);
+      background:none;
+      border:0;
+      color:var(--text-muted);
+      cursor:pointer;
+      padding:0;
+    }
+    .password-toggle:focus-visible{
+      outline:2px solid var(--accent);
+      border-radius:50%;
+    }
+    button[type="submit"]{
+      width:100%;
+      padding:0.75rem;
+      margin-top:0.5rem;
+      border:0;
+      border-radius:var(--radius);
+      background:var(--accent);
+      color:#fff;
+      font-size:1rem;
+      cursor:pointer;
+      transition:transform var(--transition),box-shadow var(--transition),opacity var(--transition);
+    }
+    button[type="submit"]:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+    button[type="submit"]:active{transform:none}
+    button[type="submit"]:disabled{opacity:0.6;cursor:not-allowed}
+    a{color:var(--accent)}
+    .helper{
+      margin-top:1rem;
+      text-align:center;
+      font-size:0.875rem;
+    }
+    .visually-hidden{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0 0 0 0);
+      border:0;
+      white-space:nowrap;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <div class="form-group">
-            <input type="email" id="email" placeholder="Email" />
-        </div>
-        <div class="form-group">
-            <input type="password" id="password" placeholder="Password" />
-            <span class="password-toggle-icon" id="togglePassword">👁️</span>
-        </div>
-        <button class="login-button" onclick="validateForm()">Login</button>
-        <div class="reset-link">
-            Forgot your password? <a href="#">Reset here.</a>
-        </div>
-    </div>
+  <main>
+    <h1>Login</h1>
+    <form id="loginForm" novalidate>
+      <fieldset>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required aria-describedby="emailError">
+        <span id="emailError" class="visually-hidden">Invalid email address</span>
+      </fieldset>
 
-    <script>
+      <fieldset class="password-wrapper">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required minlength="6" aria-describedby="passwordError">
+        <button type="button" class="password-toggle" aria-pressed="false" aria-label="Show password" id="togglePassword">
+          👁️
+        </button>
+        <span id="passwordError" class="visually-hidden">Password must be at least 6 characters</span>
+      </fieldset>
 
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('password');
+      <button type="submit" id="submitBtn" disabled>Log in</button>
+    </form>
+    <p class="helper">
+      Forgot your password?
+      <a href="#reset">Reset here</a>
+    </p>
+  </main>
 
-        function validateEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
+  <script>
+  const form=document.getElementById('loginForm');
+  const emailEl=form.email;
+  const passwordEl=form.password;
+  const toggleBtn=document.getElementById('togglePassword');
+  const submitBtn=document.getElementById('submitBtn');
 
-        togglePassword.addEventListener('click', () => {
-            const isPassword = passwordInput.type === 'password';
-            passwordInput.type = isPassword ? 'text' : 'password';
-            togglePassword.textContent = isPassword ? '🙈' : '👁️';
-        });
+  function validateEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
+  function validatePassword(value){return value.length>=6}
 
-        function validatePassword(password) {
-            return password.length >= 6;
-        }
+  function updateValidity(){
+    const emailOk=validateEmail(emailEl.value);
+    const passOk=validatePassword(passwordEl.value);
 
-        function validateForm() {
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
+    emailEl.setAttribute('aria-invalid',!emailOk);
+    passwordEl.setAttribute('aria-invalid',!passOk);
 
-            const emailValid = validateEmail(emailInput.value);
-            const passwordValid = validatePassword(passwordInput.value);
+    document.getElementById('emailError').style.display=emailOk?'none':'block';
+    document.getElementById('passwordError').style.display=passOk?'none':'block';
 
-            emailInput.classList.toggle('invalid', !emailValid);
-            passwordInput.classList.toggle('invalid', !passwordValid);
+    submitBtn.disabled=!(emailOk&&passOk);
+  }
 
-            if (emailValid && passwordValid) {
-                alert('✅ Login successful! Welcome back.');
-            }
-        }
-    </script>
+  emailEl.addEventListener('input',updateValidity);
+  passwordEl.addEventListener('input',updateValidity);
+
+  toggleBtn.addEventListener('click',()=>{
+    const type=passwordEl.type==='password'?'text':'password';
+    passwordEl.type=type;
+    const isVisible=type==='text';
+    toggleBtn.setAttribute('aria-pressed',isVisible);
+    toggleBtn.textContent=isVisible?'🙈':'👁️';
+  });
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    updateValidity();
+    if(!submitBtn.disabled){
+      alert('✅ Login successful! Welcome back.');
+      form.reset();
+      submitBtn.disabled=true;
+    }
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&passwordEl.type==='text'){
+      toggleBtn.click();
+    }
+  });
+  </script>
 </body>
-
 </html>
