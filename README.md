@@ -15,6 +15,9 @@ This project is a creative sandbox to:
 ### Achievements screen
 🟦 [Minimal achievements splash screen](https://adrian-bartos.github.io/serial-experiments-into-design/profile-screen.html) 
 
+### Achievements screen
+🟦 [Lootbox animation](https://adrian-bartos.github.io/serial-experiments-into-design/lootbox-animation.html) 
+
 ### Login screen
 🟦 [Minimal login screen Grey](https://adrian-bartos.github.io/serial-experiments-into-design/login-modal.html) 
 
