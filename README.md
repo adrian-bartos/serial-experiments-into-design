@@ -12,16 +12,18 @@ This project is a creative sandbox to:
 
 ## 🔗 Experiments
 
-### User profile
-🟦 [Minimal User Profile Blue](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html)
-🟥 [Minimal User Profile Red](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red.html)
-🟥 [Minimal User Profile Red Alternative](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red-games.html)
+### Achievements screen
+🟦 [Minimal achievements splash screen](https://adrian-bartos.github.io/serial-experiments-into-design/profile-screen.html) 
 
 ### Login screen
 🟦 [Minimal login screen Grey](https://adrian-bartos.github.io/serial-experiments-into-design/login-modal.html) 
 
-### Achievements screen
-🟦 [Minimal achievements splash screen](https://adrian-bartos.github.io/serial-experiments-into-design/profile-screen.html) 
+### User profile
+🟦 [Minimal User Profile Blue](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html) <br>
+🟥 [Minimal User Profile Red](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red.html) <br>
+🟥 [Minimal User Profile Red Alternative](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red-games.html)
+
+
 
 <style> body { background-color: #121212;
     color: white;}</style>
