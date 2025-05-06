@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile Modal Demo</title>
+  <!-- Tailwind via CDN – no build step required -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black flex items-center justify-center min-h-screen text-white">
+  <!-- Trigger button so you can re‑open the modal after closing it -->
+  <button id="openBtn"
+    class="px-4 py-2 bg-yellow-600 text-black rounded-lg shadow-lg hover:shadow-yellow-700/50 transition">
+    Open Profile
+  </button>
+
+  <!-- Backdrop -->
+  <div id="backdrop" class="fixed inset-0 bg-black/60 hidden"></div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 flex items-center justify-center hidden">
+    <div class="bg-zinc-900 border border-yellow-600 rounded-2xl p-8 w-96 shadow-2xl">
+      <!-- Header -->
+      <div class="flex flex-col items-center">
+        <div class="w-20 h-20 rounded-full bg-yellow-600 flex items-center justify-center shadow-lg mb-4">
+          <!-- Star icon (inline SVG so we don’t depend on any icon library) -->
+          <svg class="w-10 h-10 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2.25l2.955 5.986 6.604.959-4.78 4.658 1.127 6.577L12 17.498l-5.906 3.111 1.127-6.577-4.78-4.658 6.604-.959L12 2.25z" />
+          </svg>
+        </div>
+        <h2 id="username" class="text-2xl font-bold">Twitch@Fubar</h2>
+        <p class="text-sm text-zinc-400">Joined 12/3/2024</p>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="mt-6">
+        <div class="flex justify-between text-sm text-zinc-400 mb-1">
+          <span>Lvl 93</span>
+          <!-- <span>100</span> -->
+        </div>
+        <div class="w-full h-3 bg-zinc-800 rounded-full overflow-hidden">
+          <div class="h-full bg-yellow-600" style="width: 93%"></div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 gap-4 mt-6 text-center">
+        <div>
+          <p class="text-xl font-semibold leading-none">860.61</p>
+          <p class="text-xs uppercase tracking-wide text-zinc-400 mt-1">Total Weekly</p>
+        </div>
+        <div>
+          <p class="text-xl font-semibold leading-none">833.33</p>
+          <p class="text-xs uppercase tracking-wide text-zinc-400 mt-1">Total Today</p>
+        </div>
+      </div>
+
+      <!-- Favourite games grid -->
+      <div class="mt-8">
+        <h3 class="text-lg font-medium text-center mb-3">Favourite Games</h3>
+        <div class="grid grid-cols-3 gap-3">
+          <!-- game 1 -->
+          <figure class="aspect-square rounded-lg overflow-hidden bg-zinc-700">
+            <img src="assets/game1.png" alt="Favourite game 1 cover" class="w-full h-full object-contain p-4">
+          </figure>
+
+          <!-- game 2 -->
+          <figure class="aspect-square rounded-lg overflow-hidden bg-zinc-700">
+            <img src="assets/game2.png" alt="Favourite game 2 cover" class="w-full h-full object-contain p-4">
+          </figure>
+
+          <!-- game 3 -->
+          <figure class="aspect-square rounded-lg overflow-hidden bg-zinc-700">
+            <img src="assets/game3.png" alt="Favourite game 3 cover" class="w-full h-full object-contain p-4">
+          </figure>
+        </div>
+
+        <!-- Close button -->
+        <button id="closeBtn" class="w-full mt-8 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const openBtn = document.getElementById("openBtn");
+      const closeBtn = document.getElementById("closeBtn");
+      const modal = document.getElementById("modal");
+      const backdrop = document.getElementById("backdrop");
+
+      function openModal() {
+        modal.classList.remove("hidden");
+        backdrop.classList.remove("hidden");
+      }
+
+      function closeModal() {
+        modal.classList.add("hidden");
+        backdrop.classList.add("hidden");
+      }
+
+      openBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+      backdrop.addEventListener("click", closeModal);
+    </script>
+</body>
+
+</html>
