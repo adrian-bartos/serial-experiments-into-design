@@ -26,8 +26,5 @@ This project is a creative sandbox to:
 ### User profile
 🟦 [Minimal User Profile grey/yellow](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-yellow.html) <br>
 
-
-
-
 <style> body { background-color: #121212;
     color: white;}</style>
