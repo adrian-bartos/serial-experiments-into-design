@@ -22,9 +22,8 @@ This project is a creative sandbox to:
 🟦 [Minimal login screen Grey](https://adrian-bartos.github.io/serial-experiments-into-design/login-modal.html) 
 
 ### User profile
-🟦 [Minimal User Profile grey/yellow](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-blue.html) <br>
-🟥 [Minimal User Profile white/red](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red.html) <br>
-🟥 [Minimal User Profile white/red Alternative](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-red-games.html)
+🟦 [Minimal User Profile grey/yellow](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-yellow.html) <br>
+
 
 
 
