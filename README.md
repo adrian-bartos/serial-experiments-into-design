@@ -1,9 +1,9 @@
 # serial-experiments-into-design
 
+## 🚀 Purpose
+
 A series of short design experiments exploring UI elements, concepts, and interactions.  
 Each experiment is represented by a HTML file that redirects to a specific design.
-
-## 🚀 Purpose
 
 This project is a creative sandbox to:
 - Explore new design ideas
