@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="serial‑experiments‑into‑design logo" width="320"/>
+  <img src="assets/logo.png" width="320"/>
 </p>
 
 A series of short design experiments exploring UI elements, concepts, and interactions.  
