@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="assets/logo.png" width="320"/>
-</p>
+# serial-experiments-into-design
 
 A series of short design experiments exploring UI elements, concepts, and interactions.  
 Each experiment is represented by a HTML file that redirects to a specific design.
