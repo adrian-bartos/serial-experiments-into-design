@@ -8,19 +8,3 @@ This project is a creative sandbox to:
 - Prototype interface components
 - Share micro-experiments in a browsable way
 
-## 🔗 Experiments
-
-### Achievements screen
-🟦 [Minimal achievements splash screen](https://adrian-bartos.github.io/serial-experiments-into-design/profile-screen.html) 
-
-### Achievements screen
-🟦 [Lootbox animation](https://adrian-bartos.github.io/serial-experiments-into-design/lootbox-animation.html) 
-
-### Login screen
-🟦 [Minimal login screen Grey](https://adrian-bartos.github.io/serial-experiments-into-design/login-modal.html) 
-
-### User profile
-🟦 [Minimal User Profile grey/yellow](https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-yellow.html) <br>
-
-<style> body { background-color: #121212;
-    color: white;}</style>
