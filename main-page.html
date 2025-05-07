@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Serial Experiments Into Design</title>
-    <meta name="description" content="A playful series of design experiments exploring UI elements, concepts, and interactions.">
+    <meta name="description"
+        content="A playful series of design experiments exploring UI elements, concepts, and interactions.">
     <meta property="og:title" content="Serial Experiments Into Design">
-    <meta property="og:description" content="A playful series of design experiments exploring UI elements, concepts, and interactions.">
+    <meta property="og:description"
+        content="A playful series of design experiments exploring UI elements, concepts, and interactions.">
     <meta property="og:image" content="https://adrian-bartos.github.io/serial-experiments-into-design/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
     <style>
         body {
             background: linear-gradient(135deg, #121212, #1f1f1f);
@@ -19,16 +23,19 @@
             overflow-x: hidden;
             transition: background 0.5s, color 0.5s;
         }
+
         h1 {
             text-align: center;
             font-family: 'Press Start 2P', cursive;
             font-size: 2rem;
             animation: bounce 2s infinite;
         }
+
         h2 {
             text-align: center;
             margin-top: 1.5rem;
         }
+
         .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -37,6 +44,7 @@
             position: relative;
             z-index: 1;
         }
+
         .card {
             background: #1e1e1e;
             padding: 1rem;
@@ -46,34 +54,56 @@
             cursor: pointer;
             position: relative;
         }
+
         .card:hover {
             transform: scale(1.05) rotate(1deg);
             box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
             background: #272727;
         }
+
         a {
             color: #00bfff;
             text-decoration: none;
             font-weight: bold;
         }
+
         a:hover {
             text-decoration: underline;
         }
+
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
+
         .background-shape {
             position: absolute;
             border-radius: 50%;
             opacity: 0.15;
             animation: float 10s linear infinite;
         }
+
         @keyframes float {
-            0% { transform: translateY(0) translateX(0) rotate(0deg); }
-            50% { transform: translateY(-20px) translateX(20px) rotate(180deg); }
-            100% { transform: translateY(0) translateX(0) rotate(360deg); }
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) translateX(20px) rotate(180deg);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0) rotate(360deg);
+            }
         }
+
         .badge {
             position: absolute;
             top: 10px;
@@ -84,16 +114,24 @@
             font-size: 0.7rem;
             border-radius: 6px;
         }
+
         .logo {
             display: block;
             margin: 0 auto;
             width: 80px;
             animation: spin 4s linear infinite;
         }
+
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
+
         .dark-light-toggle {
             position: fixed;
             top: 20px;
@@ -104,29 +142,57 @@
             padding: 10px;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
+
         .light-mode {
             background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
             color: #121212;
         }
+
         .light-mode .card {
             background: #ffffff;
             color: #121212;
         }
+
         .light-mode .card:hover {
             background: #f5f5f5;
             box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
         }
+
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 animation: none !important;
                 transition: none !important;
             }
         }
+
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #272727;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
+
 <body>
+    <!-- Music player -->
+    <audio id="background-music" autoplay loop>
+        <source src="assets/theme.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button class="music-toggle" onclick="toggleMusic()" title="Toggle music">🔇</button>
+
     <button class="dark-light-toggle" onclick="toggleTheme()">🌙</button>
 
     <!-- <div class="background-shape" style="width:60px; height:60px; background:#00bfff; top:10%; left:20%; animation-delay:0s;"></div>
@@ -135,11 +201,13 @@
 
     <svg class="logo" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" stroke="#00bfff" stroke-width="5" fill="none" />
-        <text x="50%" y="55%" text-anchor="middle" fill="#00bfff" font-size="12" font-family="Press Start 2P">SEID</text>
+        <text x="50%" y="55%" text-anchor="middle" fill="#00bfff" font-size="12"
+            font-family="Press Start 2P">SEID</text>
     </svg>
 
     <h1>Serial Experiments Into Design</h1>
-    <p style="text-align:center;">A playful series of design experiments exploring UI elements, concepts, and interactions.</p>
+    <p style="text-align:center;">A playful series of design experiments exploring UI elements, concepts, and
+        interactions.</p>
 
     <h2>🔗 Experiments</h2>
     <div class="container">
@@ -147,27 +215,33 @@
             <span class="badge">New</span>
             <h3>Achievements Screen</h3>
             <p>Minimal achievements splash screen</p>
-            <a href="https://adrian-bartos.github.io/serial-experiments-into-design/profile-screen.html">View Experiment</a>
+            <a href="https://adrian-bartos.github.io/serial-experiments-into-design/profile-screen.html">View
+                Experiment</a>
         </div>
         <div class="card" onclick="goTo('lootbox-animation.html')">
-            <h3>Achievements Screen</h3>
+            <h3>Lootboxes</h3>
             <p>Lootbox animation</p>
-            <a href="https://adrian-bartos.github.io/serial-experiments-into-design/lootbox-animation.html">View Experiment</a>
+            <a href="https://adrian-bartos.github.io/serial-experiments-into-design/lootbox-animation.html">View
+                Experiment</a>
         </div>
         <div class="card" onclick="goTo('login-modal.html')">
             <h3>Login Screen</h3>
             <p>Minimal login screen (grey)</p>
-            <a href="https://adrian-bartos.github.io/serial-experiments-into-design/login-modal.html">View Experiment</a>
+            <a href="https://adrian-bartos.github.io/serial-experiments-into-design/login-modal.html">View
+                Experiment</a>
         </div>
         <div class="card" onclick="goTo('user-profile-yellow.html')">
             <h3>User Profile</h3>
             <p>Minimal user profile (grey/yellow)</p>
-            <a href="https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-yellow.html">View Experiment</a>
+            <a href="https://adrian-bartos.github.io/serial-experiments-into-design/user-profile-yellow.html">View
+                Experiment</a>
         </div>
     </div>
 
     <footer style="text-align:center; margin-top:2rem; font-size:0.8rem;">
-        <p>✨ Made with fun by Adrian Bartos ✨ | <a href="https://github.com/adrian-bartos/serial-experiments-into-design" target="_blank" style="color:#ff4081;">GitHub</a></p>
+        <p>✨ Made with fun by Adrian Bartos ✨ | <a
+                href="https://github.com/adrian-bartos/serial-experiments-into-design" target="_blank"
+                style="color:#ff4081;">GitHub</a></p>
     </footer>
 
     <script>
@@ -177,6 +251,20 @@
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
         }
+
+        const music = document.getElementById('background-music');
+        const button = document.querySelector('.music-toggle');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                button.textContent = '🔊';
+            } else {
+                music.pause();
+                button.textContent = '🔇';
+            }
+        }
     </script>
 </body>
+
 </html>

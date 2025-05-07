@@ -270,6 +270,50 @@
         .close-btn {
             background: var(--gh-border);
         }
+
+        @media (max-width: 600px) {
+            .reward {
+                width: 80px;
+                height: 100px;
+            }
+
+            .reward img {
+                max-width: 48px;
+                max-height: 48px;
+            }
+
+            .lootbox-wrapper {
+                padding: 1rem;
+            }
+
+            .btn-primary {
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .modal {
+                width: 90%;
+                padding: 1rem;
+            }
+
+            .modal img {
+                width: 72px;
+                height: 72px;
+            }
+
+            .modal h3 {
+                font-size: 1rem;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .modal-actions button {
+                width: 100%;
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
