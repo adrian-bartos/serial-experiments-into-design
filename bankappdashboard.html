@@ -82,13 +82,14 @@
     }
 
     .card {
-      background: #D1EDC0;
       border-radius: 16px;
-      padding: 16px;
-      color: #000;
-      position: relative;
       overflow: hidden;
-      margin-bottom: 16px;
+      width: 100%;
+      max-width: 320px;
+      background: linear-gradient(to bottom, #000 50%, #D1EDC0 50%);
+      color: #fff;
+      padding: 16px;
+      position: relative;
     }
 
     .card::before {
@@ -97,17 +98,44 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 50%;
       background: repeating-radial-gradient(circle at top left,
-          #000 0 1px,
+          #fff 0 1px,
           transparent 1px 20px);
-      opacity: 0.2;
-      z-index: 0;
+      opacity: 0.1;
     }
 
-    .card-content {
-      position: relative;
-      z-index: 1;
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .chip {
+      width: 40px;
+      height: 30px;
+      background: #ccc;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .transactions-container {
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      /* optional subtle shadow */
+      margin-top: 16px;
     }
 
     .transaction {
@@ -151,10 +179,33 @@
     }
 
     .footer-nav {
+      background: #FAF4F1;
+      border-radius: 24px;
+      padding: 8px 16px;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-icon {
       font-size: 1.25rem;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+    }
+
+    .center-button {
+      background: #000;
+      color: #FAF4F1;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
     }
   </style>
 </head>
@@ -173,15 +224,14 @@
     </div>
 
     <div class="card">
-      <div class="card-content">
-        <div style="display: flex; justify-content: space-between;">
-          <strong>Anik Deb</strong>
-          <span>VISA</span>
-        </div>
-        <div style="margin: 12px 0;">
-          6458 6354 7909 0001
-        </div>
-        <div style="text-align: right;">10/25</div>
+      <div class="card-top">
+        <div class="card-name">Anik Deb</div>
+        <div class="card-brand">VISA</div>
+      </div>
+      <div class="chip"></div>
+      <div class="card-bottom">
+        <div class="card-number">6458 6354 7909 0001</div>
+        <div class="card-expiry">10/25</div>
       </div>
     </div>
 
@@ -191,44 +241,48 @@
       <div>🔄<br>Transfer</div>
     </div>
 
-    <div class="transactions">
-      <strong>Transactions</strong>
-      <div class="transaction">
-        <div class="details">
-          <div class="avatar">JW</div>
-          <div>
-            Jenny Wilson<br>
-            <small>Today, 12:30 pm</small>
+    <div class="transactions-container">
+      <div class="transactions">
+        <strong>Transactions</strong>
+        <div class="transaction">
+          <div class="details">
+            <div class="avatar">JW</div>
+            <div>
+              Jenny Wilson<br>
+              <small>Today, 12:30 pm</small>
+            </div>
           </div>
+          <div>-$438</div>
         </div>
-        <div>-$438</div>
-      </div>
-      <div class="transaction">
-        <div class="details">
-          <div class="avatar">WW</div>
-          <div>
-            Wade Warren<br>
-            <small>Today, 12:30 pm</small>
+        <div class="transaction">
+          <div class="details">
+            <div class="avatar">WW</div>
+            <div>
+              Wade Warren<br>
+              <small>Today, 12:30 pm</small>
+            </div>
           </div>
+          <div>+$1200</div>
         </div>
-        <div>+$1200</div>
-      </div>
-      <div class="transaction">
-        <div class="details">
-          <div class="avatar">CW</div>
-          <div>
-            Cameron Williamson<br>
-            <small>Today, 12:30 pm</small>
+        <div class="transaction">
+          <div class="details">
+            <div class="avatar">CW</div>
+            <div>
+              Cameron Williamson<br>
+              <small>Today, 12:30 pm</small>
+            </div>
           </div>
+          <div>+$786</div>
         </div>
-        <div>+$786</div>
       </div>
     </div>
 
     <div class="footer-nav">
-      <div>🏠</div>
-      <div>➕</div>
-      <div>👤</div>
+      <img src="assets/icons/home.png" alt="Home" class="nav-icon" />
+      <img src="assets/icons/transfer.png" alt="Transfer" class="nav-icon" />
+      <img src="assets/icons/plus.png" alt="Add" class="center-button" />
+      <img src="assets/icons/globe.png" alt="Globe" class="nav-icon" />
+      <img src="assets/icons/profile.png" alt="Profile" class="nav-icon" />
     </div>
   </div>
 </body>
