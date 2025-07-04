@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banking Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #FAF4F1;
+      padding: 16px;
+      color: #000;
+      display: flex;
+      justify-content: center;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #E5E5E5;
+      /* light background for the rest of the page */
+      padding: 16px;
+      color: #000;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: #FAF4F1;
+      /* app section in light grey / white */
+      width: 100%;
+      max-width: 340px;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      /* optional soft shadow for elevation */
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .balance-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .balance-info img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .balance-info div {
+      font-size: 0.9rem;
+    }
+
+    .balance-info div strong {
+      display: block;
+      font-size: 1.25rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 16px 0;
+    }
+
+    .actions div {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .card {
+      background: #D1EDC0;
+      border-radius: 16px;
+      padding: 16px;
+      color: #000;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-radial-gradient(circle at top left,
+          #000 0 1px,
+          transparent 1px 20px);
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .transaction {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+      /* light separator line */
+    }
+
+    .transaction:last-child {
+      border-bottom: none;
+      /* remove separator for the last item */
+    }
+
+    .transaction {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+    }
+
+    .transaction .details {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .transaction .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 24px;
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="balance-info">
+        <img src="assets/avatar.png" alt="User" />
+        <div>
+          Total Balance
+          <strong>$56,980.00</strong>
+        </div>
+      </div>
+      <div>🔔</div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <div style="display: flex; justify-content: space-between;">
+          <strong>Anik Deb</strong>
+          <span>VISA</span>
+        </div>
+        <div style="margin: 12px 0;">
+          6458 6354 7909 0001
+        </div>
+        <div style="text-align: right;">10/25</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div>💰<br>Deposit</div>
+      <div>💸<br>Withdraw</div>
+      <div>🔄<br>Transfer</div>
+    </div>
+
+    <div class="transactions">
+      <strong>Transactions</strong>
+      <div class="transaction">
+        <div class="details">
+          <div class="avatar">JW</div>
+          <div>
+            Jenny Wilson<br>
+            <small>Today, 12:30 pm</small>
+          </div>
+        </div>
+        <div>-$438</div>
+      </div>
+      <div class="transaction">
+        <div class="details">
+          <div class="avatar">WW</div>
+          <div>
+            Wade Warren<br>
+            <small>Today, 12:30 pm</small>
+          </div>
+        </div>
+        <div>+$1200</div>
+      </div>
+      <div class="transaction">
+        <div class="details">
+          <div class="avatar">CW</div>
+          <div>
+            Cameron Williamson<br>
+            <small>Today, 12:30 pm</small>
+          </div>
+        </div>
+        <div>+$786</div>
+      </div>
+    </div>
+
+    <div class="footer-nav">
+      <div>🏠</div>
+      <div>➕</div>
+      <div>👤</div>
+    </div>
+  </div>
+</body>
+
+</html>
