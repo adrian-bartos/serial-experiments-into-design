@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bomboclaat 420 Edition</title>
+    <style>
+        :root {
+            --bg: #0d1f17;
+            --surface: #19352c;
+            --card: #24513f;
+            --accent: #32cd32;
+            --text: #ecfdf5;
+            --muted: #a7f3d0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Segoe UI', sans-serif;
+            color: var(--text);
+            display: flex;
+            overflow-x: hidden;
+        }
+
+        nav {
+            width: 60px;
+            background: var(--surface);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        nav img.logo {
+            width: 32px;
+            margin-bottom: 1rem;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .auth-buttons button,
+        .audio-toggle {
+            background: var(--accent);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            color: #064e3b;
+            border-radius: 6px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .hero {
+            margin-top: 2rem;
+            background: var(--card) url('assets/vaporwave.jpg') no-repeat center;
+            background-size: cover;
+            padding: 2rem;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            /* dark overlay for readability */
+            border-radius: 1rem;
+            z-index: 0;
+        }
+
+        .hero-text,
+        .hero img {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            max-width: 60%;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero button {
+            margin-top: 1rem;
+        }
+
+
+        .game-container {
+            margin-top: 3rem;
+            max-width: 900px;
+            margin: 3rem auto 0 auto;
+            /* top auto bottom auto */
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .game-card {
+            background: var(--surface);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .game-card img {
+            width: 100%;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-card span {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* Smoke Animation */
+        .smoke {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .smoke div {
+            position: absolute;
+            bottom: 0;
+            /* was: -150px */
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 80%);
+            border-radius: 50%;
+            animation: rise 30s linear infinite;
+            pointer-events: none;
+        }
+
+        .smoke div:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .smoke div:nth-child(2) {
+            left: 40%;
+            animation-delay: 10s;
+        }
+
+        .smoke div:nth-child(3) {
+            left: 70%;
+            animation-delay: 20s;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(-1200px) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <img src="assets/weed.png" class="logo" alt="Weed Logo" />
+        <span>🎰</span>
+        <span>🌿</span>
+        <span>💬</span>
+    </nav>
+
+    <main>
+        <header>
+            <div class="brand">
+                <h1>Bomboclaat</h1>
+            </div>
+            <div class="auth-buttons">
+                <button>Login</button>
+                <button>Register</button>
+                <button class="audio-toggle" onclick="toggleAudio()">🔊 Music</button>
+            </div>
+        </header>
+
+        <div class="hero">
+            <div class="hero-text">
+                <h2>Welcome to Bomboclaat Casino</h2>
+                <p>Light it up 🌬️ — chill, play and vibe to the greenest scene in iGaming.</p>
+                <button>Register Now</button>
+            </div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3602/3602123.png" width="150" />
+        </div>
+
+        <div class="game-container">
+            <div class="game-section">
+                <h3>🔥 Trending Games</h3>
+                <div class="game-grid">
+                    <div class="game-card">
+                        <img src="assets/kush-spin.png" alt="Game 1" />
+                        <span>Kush Spin</span>
+                    </div>
+                    <div class="game-card">
+                        <img src="assets/blaze-bonus.png" alt="Game 2" />
+                        <span>Blaze Bonus</span>
+                    </div>
+                    <div class="game-card">
+                        <img src="assets/mellow-money.png" alt="Game 3" />
+                        <span>Mellow Money</span>
+                    </div>
+                    <div class="game-card">
+                        <img src="assets/rasta-riches.png" alt="Game 4" />
+                        <span>Rasta Riches</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Smoke Overlay -->
+    <div class="smoke">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Audio -->
+    <audio id="bgMusic" loop autoplay muted>
+        <source src="https://files.catbox.moe/mk3lz8.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        let playing = false;
+
+        function toggleAudio() {
+            if (playing) {
+                audio.pause();
+            } else {
+                audio.muted = false;
+                audio.play();
+            }
+            playing = !playing;
+        }
+    </script>
+</body>
+
+</html>
