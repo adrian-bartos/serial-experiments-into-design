@@ -1,0 +1,143 @@
+/* ------------------------------------------------
+   Base: prevent background scroll when modal is open
+-------------------------------------------------*/
+body.modal-open { overflow: hidden; }
+
+/* ------------------------------------------------
+   1) Backdrop blur + fade
+-------------------------------------------------*/
+#backdrop {
+  opacity: 0;
+  transition: opacity 200ms ease;
+  backdrop-filter: blur(4px);
+}
+body.modal-open #backdrop { opacity: 1; }
+
+/* ------------------------------------------------
+   2) Modal pop + fade (and enable container queries)
+-------------------------------------------------*/
+.modal-card {
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+  transition: transform 220ms cubic-bezier(.2,.7,.2,1), opacity 220ms ease;
+  container-type: inline-size; /* used by container queries below */
+}
+body.modal-open .modal-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------
+   3) Accessible focus rings for buttons
+-------------------------------------------------*/
+:where(button,[role="button"]){ outline: none; }
+:where(button,[role="button"]):focus-visible{
+  outline: 2px solid color-mix(in srgb, #ca8a04 80%, white);
+  outline-offset: 2px;
+  border-radius: .75rem;
+}
+
+/* ------------------------------------------------
+   4) Animated “gold” border for the avatar
+-------------------------------------------------*/
+.avatar { position: relative; }
+.avatar::before{
+  content:"";
+  position:absolute; inset:-2px; border-radius:9999px; padding:2px;
+  background: conic-gradient(from var(--rot,0deg), #fef08a, #ca8a04, #fef08a);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: spin-border 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes spin-border{ to { --rot: 360deg; } }
+
+/* ------------------------------------------------
+   5) Progress bar “alive” stripes
+-------------------------------------------------*/
+.progress{ overflow:hidden; border-radius:9999px; }
+.bar{
+  background-image: linear-gradient(90deg,
+    rgba(255,255,255,.18) 25%, transparent 25%, transparent 50%,
+    rgba(255,255,255,.18) 50%, rgba(255,255,255,.18) 75%, transparent 75%, transparent);
+  background-size: 24px 100%;
+  animation: stripe-move 1.1s linear infinite;
+}
+@keyframes stripe-move{ to { background-position: 24px 0; } }
+
+/* ------------------------------------------------
+   6) Container queries for the games grid
+-------------------------------------------------*/
+.games { /* Tailwind already sets grid/cols; this is a safety baseline */
+  display: grid;
+  gap: .75rem;
+}
+@container (max-width: 360px){
+  .games{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ------------------------------------------------
+   7) Fluid username size
+-------------------------------------------------*/
+#username{ font-size: clamp(1.25rem, 1.6vw + .8rem, 1.5rem); }
+
+/* ------------------------------------------------
+   Image/thumb animations (hover lift/glow + sheen + pop-in)
+-------------------------------------------------*/
+.fav-thumb {
+  position: relative;
+  transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+  will-change: transform;
+}
+.fav-thumb:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(234, 179, 8, 0.25); /* yellow-600 glow */
+  filter: brightness(1.05);
+}
+.fav-thumb img {
+  transition: transform 250ms ease;
+}
+.fav-thumb:hover img {
+  transform: scale(1.08) rotateZ(-0.5deg);
+}
+
+/* Sheen swipe on hover */
+.sheen::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -120%;
+  width: 60%;
+  height: 300%;
+  transform: rotate(25deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+.sheen:hover::before { animation: sheen-swipe 900ms ease; }
+@keyframes sheen-swipe {
+  0% { left: -120%; opacity: 0; }
+  10% { opacity: 1; }
+  100% { left: 140%; opacity: 0; }
+}
+
+/* Pop-in utility (JS can add .animate-in with a delay) */
+.animate-in {
+  opacity: 0;
+  animation: pop-in 420ms cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ------------------------------------------------
+   Reduced-motion safety net
+-------------------------------------------------*/
+@media (prefers-reduced-motion: reduce){
+  #backdrop, .modal-card, .fav-thumb, .fav-thumb img,
+  .animate-in, .sheen::before, .bar{
+    transition: none !important;
+    animation: none !important;
+  }
+}

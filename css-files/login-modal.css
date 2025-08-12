@@ -1,0 +1,162 @@
+:root{
+  --bg:#0d0d0d;
+  --surface:#1e1e1e;
+  --surface-hover:#2a2a2a;
+  --accent:#3b82f6;
+  --text:#f5f5f5;
+  --text-muted:#9ca3af;
+  --error:#f43f5e;
+  --radius:0.75rem;
+  --transition:0.2s ease;
+  --backdrop:rgba(0,0,0,0.6);
+}
+
+@media (prefers-color-scheme:light){
+  :root{
+    --bg:#f5f5f5;
+    --surface:#ffffffee;
+    --surface-hover:#f0f0f0;
+    --text:#111827;
+    --text-muted:#6b7280;
+  }
+}
+
+*,*:before,*:after{ box-sizing:border-box }
+
+body{
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  background:var(--bg);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.5;
+  color:var(--text);
+}
+
+main{
+  background:var(--surface);
+  border-radius:var(--radius);
+  padding:2rem clamp(1rem,4vw,2.5rem);
+  width:clamp(18rem,90vw,24rem);
+  box-shadow:0 8px 24px rgba(0,0,0,0.2);
+  transition:box-shadow var(--transition);
+}
+main:focus-within{ box-shadow:0 10px 28px rgba(0,0,0,0.28) }
+
+h1{ font-size:1.5rem; margin-block:0 1.5rem; text-align:center }
+
+/* Floating label fields */
+.field{ position:relative; margin-bottom:1.25rem }
+.field label{
+  position:absolute; inset:0 0 auto 0; padding:0.75rem; pointer-events:none;
+  transform-origin:left top; transition:transform var(--transition), color var(--transition);
+  color:var(--text-muted); font-size:0.875rem;
+}
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label{
+  transform:translateY(-65%) scale(0.8);
+  color:var(--accent);
+}
+
+input{
+  width:100%; padding:0.75rem; border-radius:0.5rem;
+  border:1px solid var(--surface-hover); background:var(--surface-hover);
+  color:var(--text); font-size:1rem;
+  transition:border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+input:hover{ box-shadow:0 0 0 3px rgba(59,130,246,0.25) }
+input::placeholder{ color:transparent }
+input:focus{ outline:none; border-color:var(--accent); background:var(--surface) }
+input[aria-invalid="true"]{ border-color:var(--error) }
+
+/* Remember row */
+.remember{
+  display:flex; align-items:center; gap:0.5rem;
+  font-size:0.875rem; margin-bottom:1rem;
+}
+.remember input{ width:1rem; height:1rem }
+
+/* Shake */
+@keyframes shake{
+  10%,90%{ transform:translateX(-1px) }
+  20%,80%{ transform:translateX(2px) }
+  30%,50%,70%{ transform:translateX(-4px) }
+  40%,60%{ transform:translateX(4px) }
+}
+.shake{ animation:shake 0.4s both }
+
+/* Spinner */
+@keyframes spin{ to{ transform:rotate(360deg) } }
+.spinner{
+  width:1em; height:1em; border:2px solid transparent; border-top-color:#fff;
+  border-radius:50%; animation:spin 0.6s linear infinite; margin-inline-end:0.5em;
+}
+
+/* Password toggle */
+.password-wrapper{ position:relative }
+.password-toggle{
+  position:absolute; inset-inline-end:0.75rem; top:50%; transform:translateY(-50%);
+  background:none; border:0; color:var(--text-muted); cursor:pointer; padding:0;
+  width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; font-size:1.25rem;
+}
+.password-toggle:focus-visible{ outline:2px solid var(--accent); border-radius:50% }
+
+/* Strength meter */
+#strengthWrapper{ height:0.5rem; background:var(--surface-hover); border-radius:0.25rem; overflow:hidden; margin-top:0.25rem }
+#strengthBar{ height:100%; width:0%; background:var(--error); transition:width 0.3s ease, background 0.3s ease }
+
+/* Submit button */
+button[type="submit"]{
+  width:100%; padding:0.75rem; margin-top:0.5rem; border:0; border-radius:var(--radius);
+  background:var(--accent); color:#fff; font-size:1rem; cursor:pointer;
+  transition:box-shadow var(--transition), opacity var(--transition), transform var(--transition);
+  display:flex; align-items:center; justify-content:center; gap:0.25rem;
+}
+button.loading{ pointer-events:none; opacity:0.8 }
+
+@keyframes pop{ 0%{ transform:scale(1) } 60%{ transform:scale(1.06) } 100%{ transform:scale(1.04) } }
+button[type="submit"]:hover:not(:disabled):not(.loading){
+  animation:pop 0.25s forwards; box-shadow:0 6px 16px rgba(0,0,0,0.25);
+}
+button[type="submit"]:active:not(:disabled){ transform:scale(0.96) }
+button[type="submit"]:disabled{ opacity:0.6; cursor:not-allowed }
+
+a{ color:var(--accent) }
+.helper{ margin-top:1rem; text-align:center; font-size:0.875rem }
+
+.visually-hidden{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0);
+  border:0; white-space:nowrap;
+}
+
+/* Success Modal */
+dialog#successModal{
+  border:0; border-radius:var(--radius); padding:2rem 2.5rem;
+  background:rgba(30,30,30,0.85);
+  backdrop-filter:blur(12px) saturate(130%);
+  color:var(--text);
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);
+  max-width:22rem; text-align:center;
+}
+dialog::backdrop{ background:var(--backdrop); transition:opacity var(--transition); opacity:0 }
+dialog[open]::backdrop{ opacity:1 }
+
+#successModal h2{ margin-top:0; font-size:1.25rem }
+#closeModalBtn{
+  margin-top:1.5rem; padding:0.5rem 1.25rem; border:0; border-radius:var(--radius);
+  background:var(--accent); color:#fff; font-size:1rem; cursor:pointer;
+  transition:background var(--transition), transform var(--transition);
+}
+#closeModalBtn:hover{ transform:translateY(-2px) }
+
+/* Social buttons */
+.social-group{ display:flex; gap:0.5rem; margin-top:1rem }
+.social-btn{
+  flex:1; display:flex; align-items:center; justify-content:center; gap:0.35rem;
+  padding:0.5rem 0.25rem; border-radius:var(--radius);
+  border:1px solid var(--surface-hover); background:var(--surface);
+  font-size:0.875rem; cursor:pointer; transition:background var(--transition), transform var(--transition);
+}
+.social-btn:hover{ background:var(--surface-hover); transform:translateY(-2px) }
