@@ -8,3 +8,4 @@ This project is a creative sandbox to:
 - Prototype interface components
 - Share micro-experiments in a browsable way
 
+Can be viewed here: https://adrian-bartos.github.io/serial-experiments-into-design/
