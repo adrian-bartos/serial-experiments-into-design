@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Benefits for Members – Pricing Experiment</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ---------- THEME ---------- */
+        :root {
+            --bg: #0f0f0e;
+            --surface: #121212;
+            --panel: #1a1a18;
+            --muted: #b8b2a4;
+            --text: #f2efe7;
+            --accent: #ed8e42;
+            /* button */
+            --ribbon: #d6cfbe;
+            --price-band: #3a352b;
+            --ring: #3b3326;
+            --border: #2a2823;
+            --success: #b6d48c;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .45);
+            --radius: 16px;
+            --transition: .25s ease;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            background: radial-gradient(1200px 600px at 50% -10%, #1b1a17 0%, var(--bg) 50%, #0b0b0a 100%);
+            color: var(--text);
+            display: grid;
+            place-items: start center;
+            padding: 48px 20px 96px;
+        }
+
+        .wrapper {
+            width: min(1100px, 100%);
+        }
+
+        .eyebrow {
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: .2em;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-family: "Fraunces", serif;
+            font-weight: 700;
+            font-size: clamp(28px, 5vw, 44px);
+            text-align: center;
+            margin: 0 0 28px;
+            color: var(--ribbon);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .3);
+        }
+
+        /* ---------- GRID ---------- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        @media (max-width: 920px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---------- CARD ---------- */
+        .card {
+            position: relative;
+            background: linear-gradient(180deg, var(--panel), #111110);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+            isolation: isolate;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--ring);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .55);
+        }
+
+        .card-inner {
+            padding: 20px;
+        }
+
+        .tier-top {
+            display: grid;
+            gap: 6px;
+            color: var(--muted);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: .12em;
+        }
+
+        .save {
+            opacity: .75;
+        }
+
+        .price-band {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(0, 0, 0, .2)), var(--price-band);
+            border: 1px solid var(--border);
+            border-left: 0;
+            border-right: 0;
+            margin: 14px -20px;
+            /* bleed full width */
+            padding: 18px 20px 22px;
+        }
+
+        .price {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .price .currency {
+            font-size: 22px;
+            opacity: .85;
+            transform: translateY(-2px);
+        }
+
+        .price .amount {
+            font-family: "Fraunces", serif;
+            font-size: 48px;
+            letter-spacing: .5px;
+        }
+
+        .price .cents {
+            font-size: 14px;
+            opacity: .8;
+            align-self: flex-start;
+            transform: translateY(-10px);
+        }
+
+        .price .period {
+            margin-left: auto;
+            font-size: 13px;
+            color: var(--muted);
+            text-transform: none;
+        }
+
+        .features {
+            display: grid;
+            gap: 10px;
+            margin: 18px 0 22px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e8e3d6;
+        }
+
+        .check {
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: #202017;
+            border: 1px solid var(--ring);
+        }
+
+        .check::after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--success);
+            box-shadow: 0 0 0 2px rgba(182, 212, 140, .15);
+        }
+
+        .cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: .04em;
+            background: var(--accent);
+            color: #1b1308;
+            border: 0;
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: transform var(--transition), filter var(--transition), box-shadow var(--transition);
+            box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15), 0 8px 18px rgba(237, 142, 66, .2);
+        }
+
+        .cta:hover {
+            filter: brightness(1.05);
+            transform: translateY(-1px);
+        }
+
+        .cta:active {
+            transform: translateY(0);
+            filter: brightness(.98);
+        }
+
+        .note {
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        /* ---------- RIBBON (middle card) ---------- */
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            translate: 14px -14px;
+            rotate: 45deg;
+            z-index: 2;
+            background: var(--ribbon);
+            color: #1e1b14;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            padding: 6px 36px;
+            box-shadow: var(--shadow);
+        }
+
+        /* ---------- FOCUS RINGS ---------- */
+        .card:focus-within {
+            outline: 2px solid var(--ring);
+            outline-offset: 2px;
+        }
+
+        .cta:focus-visible {
+            outline: 2px solid var(--ribbon);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="eyebrow">Exclusive</div>
+        <h1>Benefits for members</h1>
+
+        <section class="grid" aria-label="Pricing tiers">
+            <!-- Weekly -->
+            <article class="card" aria-labelledby="t-weekly">
+                <div class="card-inner">
+                    <header class="tier-top">
+                        <div id="t-weekly">Weekly</div>
+                        <div class="save">Save 10%</div>
+                    </header>
+
+                    <div class="price-band">
+                        <div class="price" aria-label="Price per week">
+                            <span class="currency">$</span>
+                            <span class="amount">39</span><span class="cents">99</span>
+                            <span class="period">Weekly</span>
+                        </div>
+                    </div>
+
+                    <ul class="features" aria-label="Included features">
+                        <li class="feature"><span class="check" aria-hidden="true"></span> Unlimited HD Streaming</li>
+                        <li class="feature"><span class="check" aria-hidden="true"></span> Offline Downloads</li>
+                        <li class="feature"><span class="check" aria-hidden="true"></span> Multi-Device Support</li>
+                    </ul>
+
+                    <button class="cta" type="button" aria-label="Choose weekly plan">Click here</button>
+                    <div class="note">This is text element</div>
+                </div>
+            </article>
+
+            <!-- Monthly (featured) -->
+            <article class="card" aria-labelledby="t-monthly">
+                <div class="ribbon" aria-hidden="true">Value</div>
+                <div class="card-inner">
+                    <header class="tier-top">
+                        <div id="t-monthly">Monthly</div>
+                        <div class="save">Save 20%</div>
+                    </header>
+
+                    <div class="price-band">
+                        <div class="price" aria-label="Price per month">
+                            <span class="currency">$</span>
+                            <span class="amount">79</span><span class="cents">99</span>
+                            <span class="period">Monthly</span>
+                        </div>
+                    </div>
+
+                    <ul class="features" aria-label="Included features">
+                        <li class="feature"><span class="check" aria-hidden="true"></span> Unlimited HD & 4K Streaming
+                        </li>
+                        <li class="feature"><span class="check" aria-hidden="true"></span> Access to 100,000+ Movies
+                        </li>
+                        <li class="feature"><span class="check" aria-hidden="true"></span> Exclusive Originals</li>
+                    </ul>
+
+                    <button class="cta" type="button" aria-label="Choose monthly plan">Click here</button>
+                    <div class="note">This is text element</div>
+                </div>
+            </article>
+
+            <!-- Yearly -->
+            <article class="card" aria-labelledby="t-yearly">
+                <div class="card-inner">
+                    <header class="tier-top">
+                        <div id="t-yearly">Yearly</div>
+                        <div class="save">Save 30%</div>
+                    </header>
+
+                    <div class="price-band">
+                        <div class="price" aria-label="Price per year">
+                            <span class="currency">$</span>
+                            <span class="amount">129</span><span class="cents">99</span>
+                            <span class="period">Monthly</span>
+                        </div>
+                    </div>
+
+                    <ul class="features" aria-label="Included features">
+                        <li class="feature"><span class="check" aria-hidden="true"></span> Unlimited HD & 4K Streaming
+                        </li>
+                        <li class="feature"><span class="check" aria-hidden="true"></span> Access to Full Library </li>
+                        <li class="feature"><span class="check" aria-hidden="true"></span> VIP Customer Support</li>
+                    </ul>
+
+                    <button class="cta" type="button" aria-label="Choose yearly plan">Click here</button>
+                    <div class="note">This is text element</div>
+                </div>
+            </article>
+        </section>
+    </div>
+</body>
+
+</html>
