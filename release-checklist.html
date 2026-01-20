@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Release Checklist</title>
+    <meta name="color-scheme" content="dark light">
+    <style>
+        /* === Metaspins theme override === */
+
+
+        /* === Metaspins theme override === */
+        :root {
+            /* Core */
+            --bg: #0F1424;
+            /* page bg (dark navy) */
+            --surface: #141B2D;
+            /* cards */
+            --surface-2: #1B2338;
+            /* subtle surfaces */
+            --text: #E6ECFF;
+            /* primary text (cool white/blue) */
+            --muted: #8FA2C8;
+            /* secondary text */
+            --border: #27314A;
+            /* strokes */
+            --radius: 14px;
+            --shadow: 0 10px 28px rgba(5, 10, 25, .45);
+
+            /* Brand accents (from Login/Join buttons & UI chips) */
+            --accent: #865BFF;
+            /* purple (login) */
+            --accent-2: #5EE1FF;
+            /* cyan tint for gradients / sliders */
+            --cta: #2ED287;
+            /* neon green (join) */
+            --cta-ink: #071A12;
+            /* dark ink on green */
+
+            /* Status */
+            --ok: #18D06B;
+            --warn: #F6B44D;
+            --bad: #F06767;
+
+            /* Focus ring */
+            --focus: 0 0 0 3px rgba(46, 210, 135, .35);
+        }
+
+        /* Buttons */
+        button {
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text);
+            transition: transform .06s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px)
+        }
+
+        button:focus-visible {
+            outline: none;
+            box-shadow: var(--focus)
+        }
+
+        .primary {
+            /* make primaries look like JOIN NOW */
+            background: var(--cta);
+            color: var(--cta-ink);
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .ghost {
+            background: transparent
+        }
+
+        .ok {
+            background: color-mix(in oklab, var(--ok) 18%, var(--surface-2));
+            border-color: color-mix(in oklab, var(--ok) 40%, var(--border))
+        }
+
+        .warn {
+            background: color-mix(in oklab, var(--warn) 18%, var(--surface-2));
+            border-color: color-mix(in oklab, var(--warn) 40%, var(--border))
+        }
+
+        .danger {
+            background: color-mix(in oklab, var(--bad) 18%, var(--surface-2));
+            border-color: color-mix(in oklab, var(--bad) 40%, var(--border))
+        }
+
+        /* Optional purple alt (use on any button by adding .alt) */
+        button.alt {
+            background: var(--accent);
+            border-color: transparent;
+            color: #0B0F1A;
+            font-weight: 700;
+        }
+
+        /* Badges / pills */
+        .badge {
+            background: #1E2740;
+            border-color: #2D3754;
+            color: #A9B8DA
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            /* adjust until wide enough for your longest label */
+            height: 22px;
+            font: 700 12px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            border-radius: 999px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .pill {
+            background: #1E2740;
+            border-color: #2D3754;
+            color: #A9B8DA;
+        }
+
+        /* Progress bar in Metaspins gradient */
+        progress::-webkit-progress-value,
+        progress::-moz-progress-bar {
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+        }
+
+        /* Cards hover = slight purple lift like carousels */
+        .item:hover {
+            border-color: #2F3B61;
+            background: linear-gradient(180deg, #1A2140 0%, #131A2E 100%);
+        }
+
+        /* Headers / section summaries */
+        summary {
+            background: transparent;
+        }
+
+        details[open]>summary {
+            background: linear-gradient(180deg, rgba(22, 29, 48, .65) 0%, rgba(19, 26, 46, .0) 100%);
+        }
+
+        /* Print (keep brand contrast) */
+        @media print {
+            body {
+                background: #fff;
+                color: #111
+            }
+        }
+
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            background: var(--colour-blackmarket);
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: var(--colour-blackmarket);
+            color: var(--text);
+            font: 500 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            display: flex;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .wrap {
+            width: min(1200px, 100%);
+            display: grid;
+            gap: 16px
+        }
+
+        header {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .title {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* centers content horizontally */
+            text-align: center;
+            /* ensures text aligns center */
+        }
+
+        .title h1 {
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: .2px;
+            font-size: clamp(20px, 2.4vw, 30px);
+            text-align: center;
+            /* centers the text inside the h1 */
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .controls {
+            display: flex;
+            margin-top: 16px;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        button {
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform .06s ease, background .2s ease, border-color .2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px)
+        }
+
+        button:focus-visible {
+            outline: none;
+            box-shadow: var(--focus)
+        }
+
+        .primary {
+            background: var(--accent);
+            border-color: transparent
+        }
+
+        .ghost {
+            background: transparent
+        }
+
+        .ok {
+            background: color-mix(in oklab, var(--ok) 18%, var(--surface-2));
+            border-color: color-mix(in oklab, var(--ok) 35%, var(--border))
+        }
+
+        .warn {
+            background: color-mix(in oklab, var(--warn) 18%, var(--surface-2));
+            border-color: color-mix(in oklab, var(--warn) 35%, var(--border))
+        }
+
+        .danger {
+            background: color-mix(in oklab, var(--bad) 18%, var(--surface-2));
+            border-color: color-mix(in oklab, var(--bad) 35%, var(--border))
+        }
+
+        .searchbar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 4px;
+        }
+
+        .searchbar input {
+            width: 260px;
+            max-width: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text);
+        }
+
+        .kpis {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .kpis {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            /* centers the whole group */
+            text-align: center;
+        }
+
+        progress {
+            width: 220px;
+            height: 10px;
+            border: none;
+            border-radius: 999px;
+            background: var(--surface-2);
+        }
+
+        progress::-webkit-progress-bar {
+            background: var(--surface-2);
+            border-radius: 999px
+        }
+
+        progress::-webkit-progress-value {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            border-radius: 999px
+        }
+
+        progress::-moz-progress-bar {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            border-radius: 999px
+        }
+
+        /* Sections */
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        details {
+            border-top: 1px solid var(--border);
+        }
+
+        details:first-of-type {
+            border-top: none
+        }
+
+        summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+        .sum-left {
+            display: flex;
+            align-items: center;
+            /* makes spans line up in the middle */
+            gap: 8px;
+        }
+
+        .badge {
+            font: 700 12px/1.1 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+            padding: 6px 8px;
+            border-radius: 999px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        .sum-title {
+            display: flex;
+            align-items: center;
+            /* makes spans line up in the middle */
+            gap: 8px;
+        }
+
+        .sum-right {
+            display: flex;
+            align-items: center;
+            /* makes spans line up in the middle */
+            gap: 8px;
+        }
+
+        .pill {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .content {
+            padding: 0 18px 18px 18px
+        }
+
+        .note {
+            color: var(--muted);
+            margin: 8px 0 14px 0;
+            font-size: 13px
+        }
+
+        ul.checklist,
+        .checklist ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 8px
+        }
+
+        .item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: start;
+            padding: 10px 12px;
+            border: 1px dashed transparent;
+            border-radius: 10px;
+        }
+
+        .item:hover {
+            border-color: var(--border);
+            background: var(--surface-2)
+        }
+
+        label {
+            cursor: pointer;
+            display: block
+        }
+
+        input[type="checkbox"] {
+            transform: translateY(2px)
+        }
+
+        .subitems {
+            margin-left: 26px;
+            display: grid;
+            gap: 8px;
+            margin-top: 8px
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        .strike {
+            text-decoration: line-through;
+            color: var(--muted)
+        }
+
+        footer {
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+            padding: 10px
+        }
+
+        .hr {
+            height: 1px;
+            background: var(--border);
+            margin: 10px 0
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                background: white
+            }
+
+            header,
+            .controls,
+            .searchbar {
+                position: sticky;
+                top: 0
+            }
+
+            button {
+                display: none
+            }
+
+            .wrap {
+                gap: 10px
+            }
+        }
+
+        /* === Confirmation modal === */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            display: none;
+            /* toggled via .show */
+            align-items: center;
+            justify-content: center;
+            background: color-mix(in oklab, black 45%, transparent);
+            z-index: 1000;
+        }
+
+        .modal-backdrop.show {
+            display: flex;
+        }
+
+        .modal-panel {
+            width: min(480px, 92vw);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .55);
+            padding: 18px;
+            transform: translateY(8px) scale(.98);
+            opacity: 0;
+            animation: modal-in .16s ease-out forwards;
+        }
+
+        @keyframes modal-in {
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .modal-header .badge {
+            background: #1E2740;
+            border-color: #2D3754;
+            color: #A9B8DA
+        }
+
+        .modal-title {
+            font-weight: 800;
+            margin: 0
+        }
+
+        .modal-body {
+            color: var(--muted);
+            margin: 8px 0 16px 0
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .modal-actions .danger {
+            background: color-mix(in oklab, var(--bad) 25%, var(--surface-2));
+            border-color: color-mix(in oklab, var(--bad) 40%, var(--border));
+        }
+
+        .modal-actions .primary {
+            background: var(--cta);
+            color: var(--cta-ink);
+            border-color: transparent;
+            font-weight: 700;
+        }
+
+        .modal-actions .ghost {
+            background: transparent;
+        }
+    </style>
+</head>
+
+<!-- Reset confirmation modal -->
+<div id="confirmResetModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="confirmResetTitle">
+        <div class="modal-header">
+            <span class="badge">CONFIRM</span>
+            <h3 id="confirmResetTitle" class="modal-title">Reset progress?</h3>
+        </div>
+        <div class="modal-body">
+            This will clear all saved checkmarks for this checklist on this browser (localStorage).
+            You can’t undo this action.
+        </div>
+        <div class="modal-actions">
+            <button id="confirmResetYes" class="primary">Accept</button>
+            <button id="confirmResetCancel" class="ghost">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="title">
+                <h1>🚀 Release Checklist</h1>
+            </div>
+            <div class="kpis">
+                <div class="kpi"><strong id="overallCount">0/0</strong> done</div>
+                <progress id="overallProgress" max="100" value="0" aria-label="Overall progress"></progress>
+
+            </div>
+            <div class="controls">
+                <button class="primary" id="expandAll">Expand all</button>
+                <button class="ghost" id="collapseAll">Collapse all</button>
+                <!--<button class="ok" id="exportJson">Export</button>
+                <input type="file" id="importFile" accept="application/json" hidden>
+                <button id="importBtn">Import</button>
+                <button class="warn" id="reportBtn">Copy report (unchecked)</button>
+            -->
+                <button class="danger" id="resetBtn">Reset</button>
+                <!--<button class="ghost" id="printBtn">Print</button>-->
+            </div>
+        </header>
+
+        <!-- =================== CONTENT =================== -->
+        <section class="section" id="sections">
+
+            <!-- 🚬 Smoke Testing -->
+            <details open data-title="🚬 Smoke Testing">
+                <summary>
+                    <div class="sum-left">
+                        <span class="badge">SMOKE</span>
+                        <span class="sum-title">🚬 Smoke Testing</span>
+                    </div>
+                    <div class="sum-right">
+                        <span class="pill" data-progress>0/0</span>
+                    </div>
+                </summary>
+                <div class="content">
+                    <p class="note">High-level sanity pass to ensure critical paths weren’t broken.</p>
+                    <ul class="checklist">
+                        <li class="item"><input type="checkbox"><label>Users can register successfully</label></li>
+                        <li class="item"><input type="checkbox"><label>After registering, the account can be used to log
+                                in</label></li>
+                        <li class="item"><input type="checkbox"><label>Games can be started and played</label></li>
+                        <li class="item"><input type="checkbox"><label>Left-side menu items are clickable; no broken
+                                links</label></li>
+                        <li class="item"><input type="checkbox"><label>Cashier opens; deposit &amp; withdrawal flows
+                                work</label></li>
+                        <li class="item"><input type="checkbox"><label>No broken links in the footer section</label>
+                        </li>
+                        <li class="item"><input type="checkbox"><label>Users can reset their password</label></li>
+                        <li class="item"><input type="checkbox"><label>Lootboxes can be redeemed from Casino and
+                                Lootboxes pages</label></li>
+                        <li class="item"><input type="checkbox"><label>Submenus under User Account are accessible and
+                                display correctly</label></li>
+                        <li class="item"><input type="checkbox"><label>Messages can be sent in Members Chat and appear
+                                after sending</label></li>
+                        <li class="item"><input type="checkbox"><label>Balance is visible by expanding the top‑right
+                                dropdown</label></li>
+                        <li class="item"><input type="checkbox"><label>Dailydrops page is accessible; tickets can be
+                                bought</label></li>
+                        <li class="item"><input type="checkbox"><label>Tournaments page shows tournaments; users can
+                                join and wager</label></li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- 🖥️ Functional – DESKTOP -->
+            <details data-title="🖥️ Functional Testing – DESKTOP">
+                <summary>
+                    <div class="sum-left">
+                        <span class="badge">DESKTOP</span>
+                        <span class="sum-title">🖥️ Functional Testing – DESKTOP</span>
+                    </div>
+                    <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                </summary>
+                <div class="content">
+
+                    <!-- 🎰 Casino Page -->
+                    <details data-title="🎰 Casino Page">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">CASINO</span>
+                                <span class="sum-title">🎰 Casino Page</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item">
+                                    <input type="checkbox"><label>Click through: Home, Slots, Live Casino, Provably Fair
+                                        Games, Table Games, All Games — verify sorting</label>
+                                </li>
+                                <li class="item"><input type="checkbox"><label>Hovering buttons shows active/hover
+                                        states</label></li>
+                                <li class="item"><input type="checkbox"><label>Continue Playing shows previously played
+                                        games</label></li>
+                                <li class="item"><input type="checkbox"><label>If a Lootbox is active, it replaces the
+                                        promotion banner</label></li>
+                                <li class="item"><input type="checkbox"><label>Carousel arrows navigate game
+                                        carousels</label></li>
+                                <li class="item"><input type="checkbox"><label>After redeeming a lootbox, promotions
+                                        banner returns</label></li>
+                                <li class="item">
+                                    <input type="checkbox"><label>All Tournaments section displays active tournaments;
+                                        cards navigate to Tournaments page</label>
+                                </li>
+                                <li class="item"><input type="checkbox"><label>Game providers list is visible and
+                                        navigable</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 🏆 Tournaments Page -->
+                    <details data-title="🏆 Tournaments Page">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">TOURNAMENTS</span>
+                                <span class="sum-title">🏆 Tournaments Page</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Tournament card shows name, bet type,
+                                        live/upcoming status</label></li>
+                                <li class="item"><input type="checkbox"><label>Card shows end date, prize pool, Join,
+                                        Read
+                                        More</label></li>
+                                <li class="item"><input type="checkbox"><label>Join adds user to leaderboard</label>
+                                </li>
+                                <li class="item"><input type="checkbox"><label>Read More → individual tournament
+                                        page</label>
+                                </li>
+                                <li class="item"><input type="checkbox"><label>Clicking the card redirects to tournament
+                                        page</label></li>
+                                <li class="item"><input type="checkbox"><label>Tabs present: All, Live Now, Starting
+                                        Soon</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 🥇 Individual Tournament Page -->
+                    <details data-title="🥇 Individual Tournament Page">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">TOURNAMENT</span>
+                                <span class="sum-title">🥇 Individual Tournament Page</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Leaderboard shows on access</label></li>
+                                <li class="item"><input type="checkbox"><label>List of tournament games below
+                                        leaderboard;
+                                        expandable</label></li>
+                                <li class="item"><input type="checkbox"><label>Modal displays all tournament
+                                        games</label></li>
+                                <li class="item"><input type="checkbox"><label>Bottom section shows small cards linking
+                                        to other
+                                        tournaments</label></li>
+                                <li class="item"><input type="checkbox"><label>Terms &amp; Conditions section present
+                                        with
+                                        rules</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 💎 VIP CLUB -->
+                    <details data-title="💎 VIP CLUB">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">VIP</span>
+                                <span class="sum-title">💎 VIP CLUB</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>VIP page shows level cards; advance by
+                                        wagering;
+                                        rewards provided on progress</label></li>
+                                <li class="item"><input type="checkbox"><label>[If needed] Simulate wagering via
+                                        #selfservice-metaspins</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 🎟️ Dailydrops Page -->
+                    <details data-title="🎟️ Dailydrops Page">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">DAILYDROPS</span>
+                                <span class="sum-title">🎟️ Dailydrops Page</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Countdown to next draw displays
+                                        correctly</label></li>
+                                <li class="item">
+                                    <input type="checkbox"><label>Buy Tickets opens a modal; tickets can be
+                                        purchased</label>
+                                </li>
+                                <li class="item"><input type="checkbox"><label>Carousel of previous winners displays
+                                        correctly</label></li>
+                                <li class="item"><input type="checkbox"><label>Buttons have hover/active visual
+                                        feedback</label></li>
+                                <li class="item">
+                                    <input type="checkbox"><label>Subsections Results, Prizes, How to Play, Provably
+                                        Fair show correct details</label>
+                                </li>
+                                <li class="item">
+                                    <input type="checkbox"><label>Chance of winning &amp; total tickets owned visible;
+                                        buying a ticket updates values</label>
+                                </li>
+                                <li class="item">
+                                    <input type="checkbox"><label>Previous rounds dropdown expands; format MM/DD/YYYY,
+                                        HH:MM</label>
+                                </li>
+                                <li class="item">
+                                    <input type="checkbox"><label>Buy Ticket modal shows number of tickets, currency
+                                        selector, draw details, confirmation</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 🎁 Rewards Panel -->
+                    <details data-title="🎁 Rewards Panel">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">REWARDS</span>
+                                <span class="sum-title">🎁 Rewards Panel</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item">
+                                    <input type="checkbox"><label>Rakeback granted on level up; user can Claim or use
+                                        Coin Toss (up to 3x); failing any toss loses all rakeback</label>
+                                </li>
+                                <li class="item"><input type="checkbox"><label>“View Bonuses” redirects to
+                                        account/bonuses</label></li>
+                                <li class="item"><input type="checkbox"><label>Freespins via #selfservice redeemable
+                                        from Rewards tab</label></li>
+                                <li class="item"><input type="checkbox"><label>“No rewards available” shows when
+                                        appropriate (none active / after claiming all)</label></li>
+                                <li class="item"><input type="checkbox"><label>Dep &amp; Get reward styling/icons
+                                        correct; claimable</label></li>
+                                <li class="item"><input type="checkbox"><label>Opening a Lootbox gives a reward that
+                                        appears in Rewards tab</label></li>
+                                <li class="item"><input type="checkbox"><label>Main menu → Rewards toggles panel
+                                        open/close</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 📢 Promotions Page -->
+                    <details data-title="📢 Promotions Page">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">PROMOS</span>
+                                <span class="sum-title">📢 Promotions Page</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Read More opens each promotion
+                                        page</label></li>
+                                <li class="item"><input type="checkbox"><label>SEO: Slider title “Promotions” uses
+                                        &lt;h2&gt;; each promotion title uses &lt;h3&gt;</label></li>
+                                <li class="item"><input type="checkbox"><label>Read More scrolls to top of promotion
+                                        page</label></li>
+                                <li class="item"><input type="checkbox"><label>Deposit from a promo opens deposit
+                                        modal</label></li>
+                                <li class="item"><input type="checkbox"><label>GAMBLE IT from Rakeback opens Level‑Up
+                                        page</label></li>
+                                <li class="item"><input type="checkbox"><label>SPIN IT from Lootboxes redirects to
+                                        Lootboxes page</label></li>
+                                <li class="item">
+                                    <input type="checkbox"><label>Switch language FR/ES/NO: all elements display
+                                        correctly; translated buttons redirect properly</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 🧱 Level-Up Page -->
+                    <details data-title="🧱 Level-Up Page">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">LEVEL-UP</span>
+                                <span class="sum-title">🧱 Level-Up Page</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <p class="note">Static page: navigate through content and verify everything is correct.</p>
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Sub-menus expand; reward descriptions are
+                                        correct</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <!-- 👤 My Account Pages -->
+                    <details data-title="👤 My Account Pages">
+                        <summary>
+                            <div class="sum-left">
+                                <span class="badge">ACCOUNT</span>
+                                <span class="sum-title">👤 My Account Pages</span>
+                            </div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <p class="note">Access via Account icon (top‑right) → expand menu.</p>
+
+                            <details data-title="📄 Account Details – account/account-details">
+                                <summary>
+                                    <div class="sum-left">
+                                        <span class="badge">DETAILS</span>
+                                        <span class="sum-title">📄 Account Details – account/account-details</span>
+                                    </div>
+                                    <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                                </summary>
+                                <div class="content">
+                                    <ul class="checklist">
+                                        <li class="item"><input type="checkbox"><label>Click My Account → lands on
+                                                Account Details tab</label></li>
+                                        <li class="item"><input type="checkbox"><label>Username can be edited and saved
+                                                via Change</label></li>
+                                        <li class="item"><input type="checkbox"><label>Logout ends session and redirects
+                                                to homepage</label></li>
+                                        <li class="item"><input type="checkbox"><label>User email is visible</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details data-title="⚙️ Preferences – account/preferences">
+                                <summary>
+                                    <div class="sum-left">
+                                        <span class="badge">PREFS</span>
+                                        <span class="sum-title">⚙️ Preferences – account/preferences</span>
+                                    </div>
+                                    <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                                </summary>
+                                <div class="content">
+                                    <ul class="checklist">
+                                        <li class="item"><input type="checkbox"><label>All radioboxes toggle
+                                                on/off</label></li>
+                                        <li class="item"><input type="checkbox"><label>Open verification → KYC frame
+                                                opens</label></li>
+                                        <li class="item"><input type="checkbox"><label>Two‑Factor radiobox reveals extra
+                                                setup details</label></li>
+                                        <li class="item">
+                                            <input type="checkbox"><label>Username Censorship hides username in Members
+                                                Chat and Dailydrops</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details data-title="💳 Transactions – account/transactions">
+                                <summary>
+                                    <div class="sum-left">
+                                        <span class="badge">TX</span>
+                                        <span class="sum-title">💳 Transactions – account/transactions</span>
+                                    </div>
+                                    <div class="sum-right"><span class="pill" data-progress></span></div>
+                                </summary>
+                                <div class="content">
+                                    <ul class="checklist">
+                                        <li class="item"><input type="checkbox"><label>Click Transactions tab redirects
+                                                correctly</label></li>
+                                        <li class="item"><input type="checkbox"><label>Last 24 hours → Show transactions
+                                                displays last 24h</label></li>
+                                        <li class="item"><input type="checkbox"><label>Last 7 days → Show transactions
+                                                displays last 7 calendar days</label></li>
+                                        <li class="item"><input type="checkbox"><label>Last 30 days → Show transactions
+                                                displays last 30 days</label></li>
+                                        <li class="item">
+                                            <input type="checkbox"><label>No matching transactions: shows “No
+                                                transactions to display” + Cashier button</label>
+                                        </li>
+                                        <li class="item"><input type="checkbox"><label>Open Cashier button shows cashier
+                                                over account page</label></li>
+                                        <li class="item"><input type="checkbox"><label>Successful transaction link
+                                                redirects to blockchain confirmation (all currencies)</label></li>
+                                        <li class="item"><input type="checkbox"><label>Start a withdrawal → Transactions
+                                                → Cancel: modal appears; transaction marked Cancelled</label></li>
+                                        <li class="item"><input type="checkbox"><label>Each transaction shows status,
+                                                amount, date</label></li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details data-title="🔐 Password – account/password">
+                                <summary>
+                                    <div class="sum-left">
+                                        <span class="badge">PWD</span>
+                                        <span class="sum-title">🔐 Password – account/password</span>
+                                    </div>
+                                    <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                                </summary>
+                                <div class="content">
+                                    <ul class="checklist">
+                                        <li class="item"><input type="checkbox"><label>Password can be changed</label>
+                                        </li>
+                                        <li class="item"><input type="checkbox"><label>Password validation works in real
+                                                time while typing</label></li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details data-title="🎮 Games and Rewards History">
+                                <summary>
+                                    <div class="sum-left">
+                                        <span class="badge">HISTORY</span>
+                                        <span class="sum-title">🎮 Games and Rewards History</span>
+                                    </div>
+                                    <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                                </summary>
+                                <div class="content">
+                                    <ul class="checklist">
+                                        <li class="item">
+                                            <input type="checkbox"><label>Last games show bet amount, win amount,
+                                                date</label>
+                                        </li>
+                                        <li class="item"><input type="checkbox"><label>Rewards history at
+                                                /account/history/rewards</label></li>
+                                        <li class="item"><input type="checkbox"><label>Each reward shows date,
+                                                type/game, amount, status</label></li>
+                                        <li class="item"><input type="checkbox"><label>Pagination works for rewards
+                                                (navigate pages)</label></li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details data-title="🎁 Bonuses – account/bonuses">
+                                <summary>
+                                    <div class="sum-left">
+                                        <span class="badge">BONUSES</span>
+                                        <span class="sum-title">🎁 Bonuses – account/bonuses</span>
+                                    </div>
+                                    <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                                </summary>
+                                <div class="content">
+                                    <ul class="checklist">
+                                        <li class="item"><input type="checkbox"><label>Each bonus shows amount,
+                                                wagering, expiry, status</label></li>
+                                        <li class="item"><input type="checkbox"><label>Active bonus shows Cancel Bonus
+                                                button</label></li>
+                                        <li class="item"><input type="checkbox"><label>Forfeiting updates status to
+                                                Cancelled</label></li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+
+
+            <!-- 📱 Functional – MOBILE -->
+            <details data-title="📱 Functional Testing – MOBILE">
+                <summary>
+                    <div class="sum-left">
+                        <span class="badge">MOBILE</span>
+                        <span class="sum-title">📱 Functional Testing – MOBILE</span>
+                    </div>
+                    <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                </summary>
+                <div class="content">
+                    <p class="note">Mirror desktop checks on a real device/emulator.</p>
+                    <details data-title="Authentication (Mobile)">
+                        <summary>
+                            <div class="sum-left"><span class="badge">AUTH</span><span
+                                    class="sum-title">Authentication</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Login with existing account works</label>
+                                </li>
+                                <li class="item"><input type="checkbox"><label>Register new account; validations (email,
+                                        password, reCAPTCHA)</label></li>
+                                <li class="item"><input type="checkbox"><label>Registration from homepage and Register
+                                        button both work</label></li>
+                                <li class="item"><input type="checkbox"><label>Logout from Account Details works</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details data-title="Navigation menu (Mobile)">
+                        <summary>
+                            <div class="sum-left"><span class="badge">NAV</span><span class="sum-title">Navigation
+                                    menu</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Navigation menu usable and
+                                        responsive</label></li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details data-title="Metalotto (Mobile)">
+                        <summary>
+                            <div class="sum-left"><span class="badge">METALOTTO</span><span
+                                    class="sum-title">Metalotto</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Metalotto pages accessible; flows OK on
+                                        mobile</label></li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details data-title="Rewards (Mobile)">
+                        <summary>
+                            <div class="sum-left"><span class="badge">REWARDS</span><span
+                                    class="sum-title">Rewards</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Rewards panel usable on mobile</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                    <details data-title="My account (Mobile)">
+                        <summary>
+                            <div class="sum-left"><span class="badge">ACCOUNT</span><span class="sum-title">My
+                                    account</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Account subpages render correctly on
+                                        mobile</label></li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+            <!-- 🧪 Non-functional & Other -->
+            <details data-title="🧪 Non‑functional & Other">
+                <summary>
+                    <div class="sum-left">
+                        <span class="badge">NON‑FUNC</span>
+                        <span class="sum-title">🧪 Non‑functional &amp; Other</span>
+                    </div>
+                    <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                </summary>
+                <div class="content">
+                    <details data-title="Negative testing">
+                        <summary>
+                            <div class="sum-left"><span class="badge">NEG</span><span class="sum-title">Negative
+                                    testing</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Invalid password fails unless criteria
+                                        met; clear error</label></li>
+                                <li class="item"><input type="checkbox"><label>Invalid email shows validation
+                                        error</label></li>
+                                <li class="item"><input type="checkbox"><label>Invalid email + valid password → same
+                                        error (no info leak)</label></li>
+                                <li class="item"><input type="checkbox"><label>Auth‑token protected link redirects to
+                                        main page</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details data-title="Localization – FR">
+                        <summary>
+                            <div class="sum-left"><span class="badge">L10N‑FR</span><span class="sum-title">Localization
+                                    testing – FR</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Switch to FR: all elements
+                                        translated</label></li>
+                                <li class="item"><input type="checkbox"><label>Language persists in account;
+                                        logout/login keeps FR</label></li>
+                                <li class="item"><input type="checkbox"><label>Metalotto pages accessible; content
+                                        correct (FR)</label></li>
+                                <li class="item"><input type="checkbox"><label>Account settings submenus correct
+                                        (functional + content)</label></li>
+                                <li class="item"><input type="checkbox"><label>Cashier withdrawal/deposit work; content
+                                        correct (FR)</label></li>
+                                <li class="item"><input type="checkbox"><label>Main menu content correct (FR)</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details data-title="Run unit tests">
+                        <summary>
+                            <div class="sum-left"><span class="badge">UNIT</span><span class="sum-title">Run unit
+                                    tests</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>All unit tests pass</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details data-title="Regression testing">
+                        <summary>
+                            <div class="sum-left"><span class="badge">REG</span><span class="sum-title">Regression
+                                    testing</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Run E2E automated tests for broad
+                                        coverage</label></li>
+                                <li class="item"><input type="checkbox"><label>Target areas related to current release
+                                        changes</label></li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details data-title="Compatibility testing">
+                        <summary>
+                            <div class="sum-left"><span class="badge">COMPAT</span><span class="sum-title">Compatibility
+                                    testing</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Cross‑browser and OS checks pass</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details data-title="Tickets confirmation testing">
+                        <summary>
+                            <div class="sum-left"><span class="badge">TICKETS</span><span class="sum-title">Tickets
+                                    confirmation testing</span></div>
+                            <div class="sum-right"><span class="pill" data-progress>0/0</span></div>
+                        </summary>
+                        <div class="content">
+                            <ul class="checklist">
+                                <li class="item"><input type="checkbox"><label>Compile list of release tickets; verify
+                                        each ticket’s functionality</label></li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+        </section>
+
+        <footer>
+            <div class="hr"></div>
+            <div>Last updated: 22 Aug 2025 • State saved to <code>localStorage</code> (per browser/device)</div>
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            const STORAGE_NS = 'release-checklist-v1';
+            const sectionsRoot = document.getElementById('sections');
+            const allDetails = sectionsRoot.querySelectorAll('details[data-title]');
+            const overallCountEl = document.getElementById('overallCount');
+            const overallProgressEl = document.getElementById('overallProgress');
+            const filterInput = document.getElementById('filterInput');
+
+            // Controls
+            const expandAllBtn = document.getElementById('expandAll');
+            const collapseAllBtn = document.getElementById('collapseAll');
+            const resetBtn = document.getElementById('resetBtn');
+            const reportBtn = document.getElementById('reportBtn');
+            const exportBtn = document.getElementById('exportJson');
+            const importBtn = document.getElementById('importBtn');
+            const importFile = document.getElementById('importFile');
+            const clearFilterBtn = document.getElementById('clearFilter');
+            const printBtn = document.getElementById('printBtn');
+
+            // Utils
+            const textOf = (el) => (el.textContent || '').trim().replace(/\s+/g, ' ');
+            const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            const getTitlePath = (el) => {
+                const parts = [];
+                let node = el.closest('details');
+                while (node && node !== document.body) {
+                    const title = node.getAttribute('data-title');
+                    if (title) parts.unshift(title);
+                    node = node.parentElement?.closest('details');
+                }
+                return parts.join(' / ');
+            };
+            const keyForItem = (checkbox) => {
+                const label = checkbox.nextElementSibling;
+                return `${getTitlePath(checkbox)} :: ${textOf(label)}`;
+            };
+
+            // Prepare items: assign data-key
+            const items = [...sectionsRoot.querySelectorAll('.item input[type="checkbox"]')];
+            items.forEach(cb => cb.dataset.key = keyForItem(cb));
+
+            // Load saved state
+            let saved = {};
+            try {
+                saved = JSON.parse(localStorage.getItem(STORAGE_NS) || '{}');
+            } catch (e) { saved = {}; }
+
+            items.forEach(cb => { if (saved[cb.dataset.key]) cb.checked = true; });
+
+            // Update section and overall progress
+            function updateProgress() {
+                // per-section
+
+                allDetails.forEach(d => {
+                    const pill = d.querySelector(':scope > summary [data-progress]');
+                    if (!pill) return;
+                    const cbs = d.querySelectorAll(':scope .item input[type="checkbox"]');
+                    const total = cbs.length;
+                    const done = [...cbs].filter(x => x.checked).length;
+                    pill.textContent = `${done}/${total}`;
+                    // style hint
+                    pill.style.borderColor = 'var(--border)';
+                    pill.style.background = 'var(--surface-2)';
+                    if (total) {
+                        console.log("total:", total, "done:", done);
+                        const ratio = done / total;
+                        if (ratio === 1) { pill.style.background = 'color-mix(in oklab, var(--ok) 22%, var(--surface-2))'; }
+                        else if (ratio > 0) { pill.style.background = 'color-mix(in oklab, var(--warn) 22%, var(--surface-2))'; }
+                    }
+                });
+
+                // overall
+                const total = items.length;
+                const done = items.filter(x => x.checked).length;
+                overallCountEl.textContent = `${done}/${total}`;
+                overallProgressEl.max = total || 1;
+                overallProgressEl.value = done;
+            }
+
+            // Save on change + strike-through label
+            function onChange(e) {
+                if (e.target.matches('.item input[type="checkbox"]')) {
+                    const cb = e.target;
+                    saved[cb.dataset.key] = cb.checked;
+                    localStorage.setItem(STORAGE_NS, JSON.stringify(saved));
+                    const label = cb.nextElementSibling;
+                    label.classList.toggle('strike', cb.checked);
+                    updateProgress();
+                }
+
+            }
+            sectionsRoot.addEventListener('change', onChange);
+
+            sectionsRoot.addEventListener('click', (e) => {
+                const label = e.target.closest('.item label');
+                if (!label) return;
+
+                const cb = label.previousElementSibling;
+                if (cb && cb.type === 'checkbox') {
+                    cb.checked = !cb.checked;
+                    cb.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+
+            // Initialize strike-through state
+            items.forEach(cb => cb.nextElementSibling.classList.toggle('strike', cb.checked));
+
+            // Expand/Collapse
+            expandAllBtn.addEventListener('click', () => allDetails.forEach(d => d.open = true));
+            collapseAllBtn.addEventListener('click', () => allDetails.forEach(d => d.open = false));
+
+            // ----- Reset modal wiring -----
+            const resetModal = document.getElementById('confirmResetModal');
+            const resetYes = document.getElementById('confirmResetYes');
+            const resetNo = document.getElementById('confirmResetCancel');
+
+            let lastFocused = null;
+
+            function openResetModal() {
+                lastFocused = document.activeElement;
+                resetModal.classList.add('show');
+                resetModal.removeAttribute('aria-hidden');
+                // focus the first actionable button
+                resetYes.focus();
+
+                // basic focus trap
+                const focusables = resetModal.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+                function trap(e) {
+                    if (e.key !== 'Tab') return;
+                    const list = Array.from(focusables).filter(el => !el.disabled);
+                    const first = list[0], last = list[list.length - 1];
+                    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+                }
+                resetModal.addEventListener('keydown', trap, { once: false });
+                resetModal._trap = trap;
+
+                // close on ESC or backdrop click
+                function esc(e) { if (e.key === 'Escape') closeResetModal(); }
+                resetModal.addEventListener('click', (e) => { if (e.target === resetModal) closeResetModal(); });
+                document.addEventListener('keydown', esc, { once: true });
+                resetModal._esc = esc;
+            }
+
+            function closeResetModal() {
+                resetModal.classList.remove('show');
+                resetModal.setAttribute('aria-hidden', 'true');
+                if (resetModal._trap) resetModal.removeEventListener('keydown', resetModal._trap);
+                if (resetModal._esc) document.removeEventListener('keydown', resetModal._esc);
+                if (lastFocused) lastFocused.focus();
+            }
+
+            resetBtn.addEventListener('click', openResetModal);
+            resetNo.addEventListener('click', closeResetModal);
+
+            resetYes.addEventListener('click', () => {
+                // perform the original reset
+                items.forEach(cb => cb.checked = false);
+                saved = {};
+                localStorage.removeItem(STORAGE_NS);
+                items.forEach(cb => cb.nextElementSibling.classList.remove('strike'));
+                updateProgress();
+                closeResetModal();
+            });
+
+            // Report (unchecked)
+            reportBtn.addEventListener('click', () => {
+                const unchecked = items.filter(cb => !cb.checked).map(cb => `- [ ] ${cb.dataset.key}`);
+                const txt = `Unchecked items (${unchecked.length}):\n\n` + unchecked.join('\n');
+                navigator.clipboard.writeText(txt).then(() => {
+                    reportBtn.textContent = 'Copied!';
+                    setTimeout(() => reportBtn.textContent = 'Copy report (unchecked)', 900);
+                });
+            });
+
+            // Export/Import
+            exportBtn.addEventListener('click', () => {
+                const blob = new Blob([JSON.stringify(saved, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'release-checklist-progress.json';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            });
+            importBtn.addEventListener('click', () => importFile.click());
+            importFile.addEventListener('change', async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                try {
+                    const text = await file.text();
+                    const data = JSON.parse(text);
+                    if (typeof data !== 'object') throw new Error('Invalid file');
+                    saved = data;
+                    localStorage.setItem(STORAGE_NS, JSON.stringify(saved));
+                    items.forEach(cb => { cb.checked = !!saved[cb.dataset.key]; cb.nextElementSibling.classList.toggle('strike', cb.checked); });
+                    updateProgress();
+                    alert('Progress imported.');
+                } catch (err) {
+                    alert('Import failed: ' + err.message);
+                } finally {
+                    importFile.value = '';
+                }
+            });
+
+            // Print
+            printBtn.addEventListener('click', () => window.print());
+
+            // Initial compute
+            updateProgress();
+
+            // Keyboard: toggle details with Enter/Space on summary
+            sectionsRoot.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'SUMMARY' && (e.key === ' ' || e.key === 'Enter')) {
+                    e.preventDefault();
+                    e.target.parentElement.open = !e.target.parentElement.open;
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>
