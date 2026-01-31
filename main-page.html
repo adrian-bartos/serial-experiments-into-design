@@ -11,6 +11,8 @@
         content="A playful series of design experiments exploring UI elements, concepts, and interactions.">
     <meta property="og:image" content="https://adrian-bartos.github.io/serial-experiments-into-design/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Press+Start+2P&display=swap"
         rel="stylesheet">
     <style>
@@ -302,10 +304,9 @@
 </head>
 
 <body>
-    <!-- Music player -->
-    <audio id="background-music" autoplay loop>
+    <!-- Music player (click button to play) -->
+    <audio id="background-music" loop preload="none">
         <source src="assets/theme.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
     <button class="music-toggle" onclick="toggleMusic()" title="Toggle music">🔇</button>
 
