@@ -71,23 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .fill {
-      width: 0% !important;
-      animation: fill-bar 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+      animation: fill-bar 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
     }
     @keyframes fill-bar {
+      from { width: 0%; }
       to { width: 70%; }
     }
 
     .stats div {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: stat-fade-in 0.5s ease forwards;
+      animation: stat-fade-in 0.5s ease both;
     }
     .stats div:nth-child(1) { animation-delay: 0.1s; }
     .stats div:nth-child(2) { animation-delay: 0.2s; }
     .stats div:nth-child(3) { animation-delay: 0.3s; }
     .stats div:nth-child(4) { animation-delay: 0.4s; }
     @keyframes stat-fade-in {
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
