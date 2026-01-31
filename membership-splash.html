@@ -252,12 +252,10 @@
 
         /* ---------- ENTRANCE ANIMATIONS ---------- */
         .eyebrow {
-            opacity: 0;
-            animation: fadeInDown 0.6s ease forwards;
+            animation: fadeInDown 0.6s ease;
         }
         h1 {
-            opacity: 0;
-            animation: fadeInDown 0.6s ease 0.1s forwards;
+            animation: fadeInDown 0.6s ease 0.1s both;
         }
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-15px); }
@@ -265,22 +263,19 @@
         }
 
         .card {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: cardEntrance 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: cardEntrance 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }
         .card:nth-child(1) { animation-delay: 0.2s; }
         .card:nth-child(2) { animation-delay: 0.35s; }
         .card:nth-child(3) { animation-delay: 0.5s; }
         @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* ---------- FEATURE CHECK ANIMATION ---------- */
         .feature {
-            opacity: 0;
-            transform: translateX(-10px);
-            animation: featureFade 0.4s ease forwards;
+            animation: featureFade 0.4s ease both;
         }
         .card:nth-child(1) .feature:nth-child(1) { animation-delay: 0.4s; }
         .card:nth-child(1) .feature:nth-child(2) { animation-delay: 0.5s; }
@@ -292,6 +287,7 @@
         .card:nth-child(3) .feature:nth-child(2) { animation-delay: 0.8s; }
         .card:nth-child(3) .feature:nth-child(3) { animation-delay: 0.9s; }
         @keyframes featureFade {
+            from { opacity: 0; transform: translateX(-10px); }
             to { opacity: 1; transform: translateX(0); }
         }
 

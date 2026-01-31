@@ -108,28 +108,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .profile-card {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: card-entrance 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation: card-entrance 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     @keyframes card-entrance {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .achievements img {
-      opacity: 0;
-      transform: scale(0.8);
-      animation: achievement-pop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    .achievements img.animate {
+      animation: achievement-pop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-    .achievements img:nth-child(1) { animation-delay: 0.5s; }
-    .achievements img:nth-child(2) { animation-delay: 0.6s; }
-    .achievements img:nth-child(3) { animation-delay: 0.7s; }
-    .achievements img:nth-child(4) { animation-delay: 0.8s; }
-    .achievements img:nth-child(5) { animation-delay: 0.9s; }
-    .achievements img:nth-child(6) { animation-delay: 1.0s; }
-    .achievements img:nth-child(7) { animation-delay: 1.1s; }
-    .achievements img:nth-child(8) { animation-delay: 1.2s; }
     @keyframes achievement-pop {
+      from { opacity: 0; transform: scale(0.8); }
       to { opacity: 1; transform: scale(1); }
     }
   `;
