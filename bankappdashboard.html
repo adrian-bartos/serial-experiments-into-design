@@ -5,27 +5,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Banking Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #FAF4F1;
+      background: linear-gradient(135deg, #E5E5E5 0%, #FAF4F1 100%);
       padding: 16px;
       color: #000;
       display: flex;
       justify-content: center;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #E5E5E5;
-      /* light background for the rest of the page */
-      padding: 16px;
-      color: #000;
-      display: flex;
-      justify-content: center;
+      min-height: 100vh;
     }
 
     .container {
@@ -207,6 +199,159 @@
       height: 48px;
       font-size: 1.5rem;
     }
+
+    /* === Enhanced Interactions === */
+
+    /* Container entrance animation */
+    .container {
+      animation: slideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card hover effect */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Action buttons hover */
+    .actions div {
+      padding: 12px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .actions div:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+    .actions div:active {
+      transform: scale(0.95);
+    }
+
+    /* Transaction hover */
+    .transaction {
+      border-radius: 8px;
+      padding: 12px 8px !important;
+      margin: 4px 0 !important;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .transaction:hover {
+      background: #f8f8f8;
+      transform: translateX(4px);
+    }
+
+    /* Transaction amount colors */
+    .transaction .amount-positive {
+      color: #10b981;
+      font-weight: 600;
+    }
+    .transaction .amount-negative {
+      color: #ef4444;
+      font-weight: 600;
+    }
+
+    /* Staggered transaction animation */
+    .transaction {
+      animation: fadeInLeft 0.4s ease both;
+    }
+    .transaction:nth-child(2) { animation-delay: 0.1s; }
+    .transaction:nth-child(3) { animation-delay: 0.2s; }
+    .transaction:nth-child(4) { animation-delay: 0.3s; }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Nav icon hover */
+    .nav-icon {
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      border-radius: 8px;
+      padding: 4px;
+    }
+    .nav-icon:hover {
+      transform: scale(1.15);
+      opacity: 0.8;
+    }
+    .nav-icon:active {
+      transform: scale(0.95);
+    }
+
+    /* Center button pulse */
+    .center-button {
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulse 2s infinite;
+    }
+    .center-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: none;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3); }
+      50% { box-shadow: 0 0 0 8px rgba(0, 0, 0, 0); }
+    }
+
+    /* Notification bell animation */
+    .notification {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+    .notification:hover {
+      animation: ring 0.5s ease;
+    }
+    @keyframes ring {
+      0%, 100% { transform: rotate(0); }
+      20% { transform: rotate(15deg); }
+      40% { transform: rotate(-15deg); }
+      60% { transform: rotate(10deg); }
+      80% { transform: rotate(-10deg); }
+    }
+
+    /* Balance counter animation */
+    .balance-value {
+      display: inline-block;
+    }
+
+    /* Avatar hover */
+    .balance-info img {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .balance-info img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Chip shine effect */
+    .chip {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e5e5e5, #ccc, #e5e5e5);
+    }
+    .chip::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      transform: translateX(-100%);
+      animation: chipShine 3s infinite;
+    }
+    @keyframes chipShine {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+    }
   </style>
 </head>
 
@@ -220,7 +365,7 @@
           <strong>$56,980.00</strong>
         </div>
       </div>
-      <div>🔔</div>
+      <div class="notification" title="Notifications">🔔</div>
     </div>
 
     <div class="card">
