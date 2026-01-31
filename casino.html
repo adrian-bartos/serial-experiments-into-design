@@ -350,15 +350,147 @@
             clip: rect(0 0 0 0);
             white-space: nowrap;
         }
+
+        /* ========== ENHANCED ACCESSIBILITY & ANIMATIONS ========== */
+
+        /* Nav icons interactive */
+        nav span {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+            padding: 8px;
+            border-radius: 8px;
+        }
+        nav span:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 8px var(--accent));
+        }
+        nav span:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Entrance animations */
+        main {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
+        }
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Staggered game card entrance */
+        .game-card {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: cardPop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .game-card:nth-child(1) { animation-delay: 0.4s; }
+        .game-card:nth-child(2) { animation-delay: 0.5s; }
+        .game-card:nth-child(3) { animation-delay: 0.6s; }
+        .game-card:nth-child(4) { animation-delay: 0.7s; }
+        @keyframes cardPop {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Game card enhancements */
+        .game-card {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .game-card::before {
+            content: "Play Now";
+            position: absolute;
+            inset: 0;
+            background: rgba(50, 205, 50, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #064e3b;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 1;
+            border-radius: 0.5rem;
+        }
+        .game-card:hover::before {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .game-card:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Button focus states */
+        .glow-button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        /* Hero icon floating animation */
+        .hero > img {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Nav entrance */
+        nav {
+            transform: translateX(-60px);
+            animation: slideInNav 0.5s ease forwards;
+        }
+        @keyframes slideInNav {
+            to { transform: translateX(0); }
+        }
+
+        /* Footer link hover */
+        .site-footer a {
+            position: relative;
+        }
+        .site-footer a::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .site-footer a:hover::after {
+            width: 100%;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <nav>
-        <img src="assets/weed.png" class="logo" alt="Weed Logo" />
-        <span>🎰</span>
-        <span>🌿</span>
-        <span>💬</span>
+    <nav aria-label="Main navigation">
+        <img src="assets/weed.png" class="logo" alt="Site Logo" />
+        <span role="button" tabindex="0" aria-label="Games">🎰</span>
+        <span role="button" tabindex="0" aria-label="Promotions">🌿</span>
+        <span role="button" tabindex="0" aria-label="Chat">💬</span>
     </nav>
 
     <main>
@@ -387,21 +519,21 @@
         <div class="game-container">
             <div class="game-section">
                 <h3>🔥 Trending Games</h3>
-                <div class="game-grid">
-                    <div class="game-card">
-                        <img src="assets/kush-spin.png" alt="Game 1" />
+                <div class="game-grid" role="list">
+                    <div class="game-card" role="listitem" tabindex="0" aria-label="Play Kush Spin">
+                        <img src="assets/kush-spin.png" alt="Kush Spin game thumbnail" />
                         <span>Kush Spin</span>
                     </div>
-                    <div class="game-card">
-                        <img src="assets/kush-spin.png" alt="Game 2" />
+                    <div class="game-card" role="listitem" tabindex="0" aria-label="Play Blaze Bonus">
+                        <img src="assets/kush-spin.png" alt="Blaze Bonus game thumbnail" />
                         <span>Blaze Bonus</span>
                     </div>
-                    <div class="game-card">
-                        <img src="assets/kush-spin.png" alt="Game 3" />
+                    <div class="game-card" role="listitem" tabindex="0" aria-label="Play Mellow Money">
+                        <img src="assets/kush-spin.png" alt="Mellow Money game thumbnail" />
                         <span>Mellow Money</span>
                     </div>
-                    <div class="game-card">
-                        <img src="assets/kush-spin.png" alt="Game 4" />
+                    <div class="game-card" role="listitem" tabindex="0" aria-label="Play Rasta Riches">
+                        <img src="assets/kush-spin.png" alt="Rasta Riches game thumbnail" />
                         <span>Rasta Riches</span>
                     </div>
                 </div>
